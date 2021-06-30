@@ -1,3 +1,5 @@
+//0 = 가위 1 = 바위 2 = 보
+
 export function num_users(){
     return Math.floor(Math.random()*9+2);
 }
