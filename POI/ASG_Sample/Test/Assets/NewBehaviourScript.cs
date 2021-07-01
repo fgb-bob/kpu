@@ -10,7 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Screen.sleepTimeout = SleepTimeout.NeverSleep;
     }
 
     // Update is called once per frame
@@ -20,13 +20,18 @@ public class NewBehaviourScript : MonoBehaviour
 
         dir.x = Input.acceleration.x;
         dir.y = Input.acceleration.y;
-        Debug.Log(dir.x + ", " + dir.y);
         if (dir.sqrMagnitude > 1)
             dir.Normalize();
 
         dir *= Time.deltaTime;
 
         rig.velocity = new Vector2(dir.x * speed, dir.y * speed);
-        Debug.Log(rig.velocity);
+
+        Vector3 worldpos = Camera.main.WorldToViewportPoint(this.transform.position);
+        if (worldpos.x < 0f) worldpos.x = 0f;
+        if (worldpos.y < 0f) worldpos.y = 0f;
+        if (worldpos.x > 1f) worldpos.x = 1f;
+        if (worldpos.y > 1f) worldpos.y = 1f;
+        transform.position = Camera.main.ViewportToWorldPoint(worldpos);
     }
 }
