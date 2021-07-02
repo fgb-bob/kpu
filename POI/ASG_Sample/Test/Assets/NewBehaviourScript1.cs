@@ -21,15 +21,22 @@ public class NewBehaviourScript1 : MonoBehaviour
 		}
 
 		var canvasObject = new GameObject("Canvas");
+		//var canvasObject = GameObject.Find("Canvas");
 		var canvas = canvasObject.AddComponent<Canvas>();
+		//var canvas = canvasObject.GetComponent<Canvas>();
+		var mode = canvasObject.AddComponent<CanvasScaler>();
+		//var mode = canvasObject.GetComponent<CanvasScaler>();
 		canvasObject.AddComponent<GraphicRaycaster>();
+		canvasObject.layer = 5;
 		canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+		mode.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+		mode.referenceResolution = new Vector2(800, 600);
 
 		var buttonObject = new GameObject("Button");		
 		var image = buttonObject.AddComponent<Image>();
 		image.transform.SetParent(canvas.transform);
 		image.rectTransform.sizeDelta = new Vector2(weight, height);
-		image.rectTransform.anchoredPosition = new Vector2(pos_x, pos_y);//Vector3.zero;
+		image.rectTransform.anchoredPosition = new Vector2(pos_x, pos_y);
 		image.rectTransform.pivot = new Vector2(0, 1);
 		image.rectTransform.anchorMin = new Vector2(0, 1);
 		image.rectTransform.anchorMax = new Vector2(0, 1);
@@ -40,12 +47,17 @@ public class NewBehaviourScript1 : MonoBehaviour
 		button.onClick.AddListener(() => Debug.Log(Time.time));
 
 		var textObject = new GameObject("Text");
-		textObject.transform.parent = buttonObject.transform;
+		//var textObject = GameObject.Find("Text");
+		textObject.transform.SetParent(buttonObject.transform);
 		text = textObject.AddComponent<Text>();
-		text.rectTransform.sizeDelta = Vector2.zero;
-		text.rectTransform.anchorMin = Vector2.zero;
-		text.rectTransform.anchorMax = Vector2.one;
-		text.rectTransform.anchoredPosition = new Vector2(.5f, .5f);
+		//text = textObject.GetComponent<Text>();
+		text.rectTransform.sizeDelta = new Vector2(weight, height);
+		text.rectTransform.anchoredPosition = new Vector2(pos_x, pos_y);
+		text.rectTransform.pivot = new Vector2(0, 1);
+		text.rectTransform.anchorMin = new Vector2(0, 1);
+		text.rectTransform.anchorMax = new Vector2(0, 1);
+		text.horizontalOverflow = HorizontalWrapMode.Overflow;
+		text.verticalOverflow = VerticalWrapMode.Overflow;
 		text.text = "Button Test!";
 		text.font = Resources.FindObjectsOfTypeAll<Font>()[0];
 		text.fontSize = 20;
@@ -56,9 +68,7 @@ public class NewBehaviourScript1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		//time += Time.deltaTime;
-		//timeText.text = "진행 시간 : " + Mathf.Round(time) + "초";
 		time += Time.deltaTime;
-		text.text = "진행 시간 : " + Mathf.Round(time) + "초";
+		text.text = "진행 시간 : " + Mathf.Round(time).ToString() + "초";
 	}
 }

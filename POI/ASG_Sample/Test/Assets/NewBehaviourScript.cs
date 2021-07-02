@@ -6,20 +6,29 @@ public class NewBehaviourScript : MonoBehaviour
 {
     public float speed;
     public Rigidbody2D rig;
+    Animator animator;
+    Vector3 dir;
 
     // Start is called before the first frame update
     void Start()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
+        animator = GetComponent<Animator>();
+        dir = Vector3.zero;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 dir = Vector3.zero;
-
         dir.x = Input.acceleration.x;
         dir.y = Input.acceleration.y;
+
+        if (Input.acceleration.x >= 0)
+            animator.SetBool("WhereLook", false);
+        else
+            animator.SetBool("WhereLook", true);
+
+
         if (dir.sqrMagnitude > 1)
             dir.Normalize();
 
@@ -32,6 +41,7 @@ public class NewBehaviourScript : MonoBehaviour
         if (worldpos.y < 0f) worldpos.y = 0f;
         if (worldpos.x > 1f) worldpos.x = 1f;
         if (worldpos.y > 1f) worldpos.y = 1f;
+
         transform.position = Camera.main.ViewportToWorldPoint(worldpos);
     }
 }
