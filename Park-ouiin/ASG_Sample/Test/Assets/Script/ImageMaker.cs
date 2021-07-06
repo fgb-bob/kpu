@@ -63,7 +63,7 @@ public class ImageMaker : MonoBehaviour
 	// 이미지 위치 조정
 	public void SetPosition(GameObject gameObject, Vector3 position)
 	{
-		var temp = gameObject.GetComponent<RectTransform>().position;
+		var temp = gameObject.GetComponent<RectTransform>().anchoredPosition;
 		temp = position;
 	}
 }

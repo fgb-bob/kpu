@@ -68,9 +68,8 @@ public class ButtonMaker : MonoBehaviour
 
 	public void SetPosition(GameObject gameObject, Vector3 position)
 	{
-		var temp = gameObject.GetComponent<RectTransform>().position;
+		var temp = gameObject.GetComponent<RectTransform>().anchoredPosition;
 		temp = position;
-
 	}
 
 	public void OnClick(GameObject gameObject, string sceneName)

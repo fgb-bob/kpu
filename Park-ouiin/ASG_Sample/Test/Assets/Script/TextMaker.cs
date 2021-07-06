@@ -81,7 +81,7 @@ public class TextMaker : MonoBehaviour
 	// 글 위치 설정
 	public void SetPosition(GameObject gameObject, Vector3 position)
 	{
-		var temp = gameObject.GetComponent<RectTransform>().position;
+		var temp = gameObject.GetComponent<RectTransform>().anchoredPosition;
 		temp = position;
 	}
 }
