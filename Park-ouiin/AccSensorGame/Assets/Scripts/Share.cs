@@ -10,6 +10,11 @@ public static class Share
             public static readonly string Title = "Prefabs/Title";
             public static readonly string Startbtn = "Prefabs/Startbtn";
             public static readonly string Mainaame = "Prefabs/Maingame";
+            public static readonly string Character = "Prefabs/Character";
+            public static readonly string ScoreText = "Prefabs/ScoreText";
+            public static readonly string Obstacle = "Prefabs/Obstacle";
+            public static readonly string Heart = "Prefabs/Heart";
+            public static readonly string ItemHeart = "Prefabs/ItemHeart";
         }
     }    
 

@@ -1,36 +1,26 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class UIManager : MonoBehaviour
+public class UIManager
 {
-    GameObject uiRoot;
-
-    private void Awake()
+    public static void MakeTitleUI()
     {
-        DontDestroyOnLoad(uiRoot = Share.Util.InstantiatePrefab(Share.Path.Prefab.Root, null));
-
         TitleUI.MakeTitle();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public static void MakeMaingameUI()
     {
-
+        MaingameUI.MakeMaingame();
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void Invisible(string canvasname)
     {
-        
-    }
-
-    public static void OpenUI(GameObject gameObject)
-    {
-        gameObject.SetActive(true);
-    }
-
-    public static void CloseUI(GameObject gameObject)
-    {
+        GameObject gameObject = GameObject.Find(canvasname);
         gameObject.SetActive(false);
+    }
+
+    public static void Visible(string canvasname)
+    {
+        GameObject gameObject = GameObject.Find(canvasname);
+        gameObject.SetActive(true);
     }
 }
