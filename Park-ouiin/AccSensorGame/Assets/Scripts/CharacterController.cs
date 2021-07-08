@@ -5,12 +5,13 @@ public class CharacterController
     public float speed;
     public Rigidbody2D rig;
     Animator animator;
+    GameObject temp;
     Vector3 dir;
 
     public void Init()
     {
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
-        GameObject temp = GameObject.FindGameObjectWithTag("Player");
+        temp = GameObject.FindGameObjectWithTag("Player");
         animator = temp.GetComponent<Animator>();
         speed = 500f;
     }
@@ -25,7 +26,7 @@ public class CharacterController
 
     public void Move()
     {
-        GameObject temp = GameObject.FindGameObjectWithTag("Player");
+        //GameObject temp = GameObject.FindGameObjectWithTag("Player");
         dir = Vector3.zero;
 
         dir.x = Input.acceleration.x;

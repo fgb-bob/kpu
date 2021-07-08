@@ -8,20 +8,20 @@ public class ObstacleManager
 
     public static void Init()
     {
-        ObstacleNum = 11;
-        maxObstacleNum = 11;
+        ObstacleNum = 10;
+        maxObstacleNum = 10;
 
         Obstacles = new GameObject[maxObstacleNum];
         ObstaclesVector = new Vector3[maxObstacleNum];
         for (int i = 0; i < maxObstacleNum; ++i)
         {
-            if (i != maxObstacleNum - 1)
+            if ((i % 10) != 1)
                 Obstacles[i] = Share.Util.InstantiatePrefab(Share.Path.Prefab.Obstacle, null);
             else
                 Obstacles[i] = Share.Util.InstantiatePrefab(Share.Path.Prefab.ItemHeart, null);
 
             Vector2 temp = Obstacles[i].transform.position;            
-            switch (Random.Range(1, 4))
+            switch (Random.Range(1, 5))
             {
                 case 1:
                     temp.x = Random.Range(-10.0f, 10.0f);
@@ -49,13 +49,14 @@ public class ObstacleManager
                     break;
             }
             Obstacles[i].transform.position = temp;
+            Obstacle.Move(Obstacles[i], ObstaclesVector[i]);
         }
     }
 
     public static void ReSetPosition(GameObject gameObject, int num)
     {
         Vector2 temp = gameObject.transform.position;
-        switch (Random.Range(1, 4))
+        switch (Random.Range(1, 5))
         {
             case 1:
                 temp.x = Random.Range(-10.0f, 10.0f);
@@ -83,6 +84,7 @@ public class ObstacleManager
                 break;
         }
         gameObject.transform.position = temp;
+        Obstacle.Move(gameObject, ObstaclesVector[num]);
     }
 
     public static bool OutOfRange(GameObject gameObject)

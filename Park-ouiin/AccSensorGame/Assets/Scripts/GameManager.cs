@@ -2,21 +2,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    GameObject uiRoot, player;
-    GameObject[] obstacle;
+    GameObject uiRoot;
+    public static GameObject titleUI, maingameUI, resultUI;
+    public static GameObject[] obstacle;
     public static int state; // 0 - title  1 - 메인
 
     private void Awake()
     {
         DontDestroyOnLoad(uiRoot = Share.Util.InstantiatePrefab(Share.Path.Prefab.Root, null));
         UIManager.MakeTitleUI();
+        titleUI = GameObject.Find("TitleCanvas");
+
+        UIManager.MakeMaingameUI();
+        maingameUI = GameObject.Find("MaingameCanvas");
+        UIManager.Invisible(maingameUI);
+
+        UIManager.MakeResultUI();
+        resultUI = GameObject.Find("ResultCanvas");
+        UIManager.Invisible(resultUI);
+
         state = 0;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
     }
 
     // Update is called once per frame
@@ -24,42 +29,51 @@ public class GameManager : MonoBehaviour
     {
         switch (state)
         {
-            case 0:
-                break;
             case 1:
-                player = GameObject.FindGameObjectWithTag("Player");
-                player.GetComponent<Player>().Playing();
+                CharacterManager.Player.GetComponent<Player>().Playing();
                 MaingameUI.SetScoreText();
 
-                obstacle = GameObject.FindGameObjectsWithTag("Obstacle");
-                for (int i = 0; i < obstacle.Length; ++i)
+                for (int i = 0; i < ObstacleManager.Obstacles.Length; ++i)
                 {
-                    Obstacle.Move(obstacle[i], ObstacleManager.ObstaclesVector[i]);
-                    if (ObstacleManager.OutOfRange(obstacle[i]))
+                    Obstacle.Move(ObstacleManager.Obstacles[i], ObstacleManager.ObstaclesVector[i]);
+                    if (ObstacleManager.OutOfRange(ObstacleManager.Obstacles[i]))
                     {
-                        ObstacleManager.ReSetPosition(obstacle[i], i);
+                        ObstacleManager.ReSetPosition(ObstacleManager.Obstacles[i], i);
                     }
-                    if (CharacterManager.Touching(player.GetComponent<Collider2D>(), obstacle[i].GetComponent<Collider2D>()))
+                    if (CharacterManager.Touching(CharacterManager.Player.GetComponent<Collider2D>(), ObstacleManager.Obstacles[i].GetComponent<Collider2D>()))
                     {
-                        if (i != obstacle.Length - 1)
+                        if (i != ObstacleManager.Obstacles.Length - 1)
                         {
-                            ObstacleManager.ReSetPosition(obstacle[i], i);
-                            Debug.Log("충돌");
+                            ObstacleManager.ReSetPosition(ObstacleManager.Obstacles[i], i);
                             CharacterManager.DecreaseLife(1);
-                            Debug.Log("체력 1개 감소");                            
+                            if (CharacterManager.life <= 0)
+                            {
+                                GamePause();
+                                UIManager.Visible(resultUI);
+                                state = 0;
+                            }
                         }
                         else
                         {
-                            ObstacleManager.ReSetPosition(obstacle[i], i);
-                            Debug.Log("충돌");
+                            ObstacleManager.ReSetPosition(ObstacleManager.Obstacles[i], i);
                             CharacterManager.IncreaseLife(1);
-                            Debug.Log("체력 1개 증가");                            
                         }
                         break;
                     }
                 }
-
                 break;
         }
+    }
+
+    public static void GamePause()
+    {
+        Time.timeScale = 0.0F;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
+    }
+
+    public static void GameResume()
+    {
+        Time.timeScale = 1.0F;
+        Time.fixedDeltaTime = 0.02F * Time.timeScale;
     }
 }

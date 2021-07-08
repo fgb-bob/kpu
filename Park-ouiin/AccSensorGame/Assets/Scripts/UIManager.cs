@@ -12,15 +12,18 @@ public class UIManager
         MaingameUI.MakeMaingame();
     }
 
-    public static void Invisible(string canvasname)
+    public static void MakeResultUI()
     {
-        GameObject gameObject = GameObject.Find(canvasname);
+        ResultUI.MakeResult();
+    }
+
+    public static void Invisible(GameObject gameObject)
+    {
         gameObject.SetActive(false);
     }
 
-    public static void Visible(string canvasname)
+    public static void Visible(GameObject gameObject)
     {
-        GameObject gameObject = GameObject.Find(canvasname);
         gameObject.SetActive(true);
     }
 }

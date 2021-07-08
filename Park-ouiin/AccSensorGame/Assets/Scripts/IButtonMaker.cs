@@ -1,4 +1,4 @@
 public interface IButtonMaker
 {
-    public void OnClick();
+    public void OnClick(int num);
 }

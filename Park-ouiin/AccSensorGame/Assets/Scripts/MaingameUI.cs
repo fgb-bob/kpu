@@ -11,6 +11,8 @@ public class MaingameUI
     {
         MaingameImage = Share.Util.InstantiatePrefab(Share.Path.Prefab.Mainaame, null);
         ScoreText = Share.Util.InstantiatePrefab(Share.Path.Prefab.ScoreText, UIRoot.maingameCanvas);
+        CharacterManager.life = 3;
+        CharacterManager.maxLife = CharacterManager.life;
         Heart = new GameObject[CharacterManager.life];        
         for (int i = 0; i < CharacterManager.life; ++i)
         {
@@ -36,5 +38,10 @@ public class MaingameUI
             else
                 Heart[i].SetActive(false);            
         }
+    }
+
+    public static void ResetScore()
+    {
+        score = 0;
     }
 }

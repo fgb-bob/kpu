@@ -15,6 +15,8 @@ public static class Share
             public static readonly string Obstacle = "Prefabs/Obstacle";
             public static readonly string Heart = "Prefabs/Heart";
             public static readonly string ItemHeart = "Prefabs/ItemHeart";
+            public static readonly string Restartbtn = "Prefabs/Restartbtn";
+            public static readonly string Quitbtn = "Prefabs/Quitbtn";
         }
     }    
 

@@ -57,19 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\IButtonMaker.cs" />
+    <Compile Include="Assets\Scripts\TextMaker.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
+    <Compile Include="Assets\Scripts\ObstacleManager.cs" />
     <Compile Include="Assets\Scripts\UIRoot.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Share.cs" />
+    <Compile Include="Assets\Scripts\JudgeManager.cs" />
     <Compile Include="Assets\Scripts\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\TitleUI.cs" />
-    <Compile Include="Assets\Scripts\MaingameUI.cs" />
-    <Compile Include="Assets\Scripts\UIManager.cs" />
-    <Compile Include="Assets\Scripts\CharacterManager.cs" />
-    <Compile Include="Assets\Scripts\ObstacleManager.cs" />
-    <Compile Include="Assets\Scripts\JudgeManager.cs" />
-    <Compile Include="Assets\Scripts\TextMaker.cs" />
     <Compile Include="Assets\Scripts\Obstacle.cs" />
+    <Compile Include="Assets\Scripts\TitleUI.cs" />
+    <Compile Include="Assets\Scripts\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\MaingameUI.cs" />
+    <Compile Include="Assets\Scripts\ResultUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
