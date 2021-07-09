@@ -15,14 +15,25 @@ public class Data : ScriptableObject
 
 public class MapData : ScriptableObject
 {
-    public int Map1 = 10;
-    public int Map2 = 20;
+    public static int Map1 = 10;
+    public static int Map2 = 20;
 
-    public List<int> DataType = new List<int>();
-    public List<GameObject> DataPrefabs = new List<GameObject>();
-    public Vector3[] DataPos = new Vector3[10];
-    public List<Vector3> DataRotation = new List<Vector3>();
-    public List<Vector3> DataScale = new List<Vector3>();
+    public int[] DataType = new int[Map1];
+    public GameObject[] DataPrefabs = new GameObject[Map1];
+    public Vector3[] M1_DataPos = new Vector3[Map1];
+    public Vector3[] M1_DataRotation = new Vector3[Map1];
+    public Vector3[] M1_DataScale = new Vector3[Map1];
+
+    public GameObject C1_DataPrefabs = new GameObject();
+    public Vector3 C1_DataPo = new Vector3();
+    public Vector3 C1_DataRotation = new Vector3();
+    public Vector3 C1_DataScale = new Vector3();
+
+    public int[] M2_DataType = new int[Map1];
+    public GameObject[] M2_DataPrefabs = new GameObject[Map1];
+    public Vector3[] M2_DataPos = new Vector3[Map1];
+    public Vector3[] M2_DataRotation = new Vector3[Map1];
+    public Vector3[] M2_DataScale = new Vector3[Map1];
 }
 public class MapDataSource
 {

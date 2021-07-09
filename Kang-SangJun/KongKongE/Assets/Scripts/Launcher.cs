@@ -1,26 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class Launcher : MonoBehaviour
+public class Launcher : MonoBehaviour , Interface
 {
-    //런처에서 객체들 관리하는 매니저 초기화 및 업데이트 해주구요
-    //모노 상속 안받아도 프리팹 생성해서 gameObject 처리 가능합니다
-    //결국 런처에서 객체관리자를 통해 객체가 관리되고.모노 없이 런처를 통해서 필요한 핸들링 하시면 됩니다
-    //대부분은 런천 통하지 않고 유니티 스크립트 사용 가능하구요.
-
-
     private Scene GameScene;
-
+    GameObject uiRoot, uiTitle;
+    Button SangJunJAngJang123;
     // Start is called before the first frame update
     void Start()
     {
+        DontDestroyOnLoad(uiRoot = Share.Util.InstantiatePrefab(Share.Path.Prefab.Root, null));
+
+        uiTitle = Share.Util.InstantiatePrefab(Share.Path.Prefab.Title, UIRoot.canvas);
+
+        SangJunJAngJang123 = GameObject.Find("Button").GetComponent<Button>();
+        SangJunJAngJang123.onClick.AddListener(() => onClick());
+
         GameScene = new Scene();
         GameScene.init();
+
+        Time.timeScale = 0;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         GameScene.Update();
     }
@@ -29,5 +34,12 @@ public class Launcher : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
             Debug.Log("Sibal");
+    }
+
+    public void onClick()
+    {
+        uiTitle.SetActive(false);
+        Time.timeScale = 1;
+
     }
 }

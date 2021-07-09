@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Player
   m_EditorClassIdentifier: 
   TypeName: Player
-  Pos: {x: 0, y: 10, z: 0}
+  Pos: {x: 0, y: 3, z: 0}
   Rotate: {x: 0, y: 10, z: 0}
   Scale: {x: 0, y: 10, z: 0}

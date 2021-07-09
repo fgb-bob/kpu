@@ -11,36 +11,36 @@ public class MoveController
         if (Input.GetKey(KeyCode.W))
         {
            // Obj.transform.Rotate(new Vector3(0.5f, 0, 0));
-            Obj.transform.eulerAngles += new Vector3(0.5f, 0, 0);
+            Obj.transform.eulerAngles += new Vector3(1, 0, 0);
 
         }
         if (Input.GetKey(KeyCode.S))
         {
            // Obj.transform.Rotate(new Vector3(-0.5f, 0, 0));
-            Obj.transform.eulerAngles += new Vector3(-0.5f, 0, 0);
+            Obj.transform.eulerAngles += new Vector3(-1, 0, 0);
 
         }
         if (Input.GetKey(KeyCode.A))
         {
-            Obj.transform.eulerAngles += new Vector3(0, 0, 0.5f);
+            Obj.transform.eulerAngles += new Vector3(0, 0, 1);
 
         }
         if (Input.GetKey(KeyCode.D))
         {
-            Obj.transform.eulerAngles += new Vector3(0, 0, -0.5f);
+            Obj.transform.eulerAngles += new Vector3(0, 0, -1);
 
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rigid.AddRelativeForce(Vector3.up * 10, ForceMode.Impulse);
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    rigid.AddRelativeForce(Vector3.up * 10, ForceMode.Impulse);
+        //}
  
     }
     public void PlayerJump(GameObject Obj)
     {
         rigid = Obj.GetComponent<Rigidbody>();
         rigid.velocity = Vector3.zero;
-        rigid.AddRelativeForce(Vector3.up*5, ForceMode.Impulse);
+        rigid.AddRelativeForce(Vector3.up*10, ForceMode.Impulse);
     }
 
     private   void MoveMap(GameObject Obj)
