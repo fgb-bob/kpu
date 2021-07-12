@@ -85,12 +85,10 @@ public class NGameManager : MonoBehaviour
                         if (nObstacleManager.nObstacle[i].GetBool())
                         {
                             nCharacterManager.IncreaseLife(1);
-                            Debug.Log("체력 증가! 현재 체력 : " + nCharacterManager.GetLife());
                         }
                         else
                         {                            
                             nCharacterManager.DecreaseLife(1);
-                            Debug.Log("체력 감소! 현재 체력 : " + nCharacterManager.GetLife());
                         }
                         nUIManager.nMaingameUI.SetHeartActive(nCharacterManager.GetLife());
                         nObstacleManager.nObstacle[i].SetPosDir();
@@ -108,8 +106,7 @@ public class NGameManager : MonoBehaviour
                 Debug.Log("재시작!");
                 nCharacterManager.Reset();
                 nUIManager.nMaingameUI.SetHeartActive(nCharacterManager.GetLife());
-                nUIManager.nMaingameUI.ResetScore();
-                nUIManager.Visible(nUIManager.maingameUI);
+                nUIManager.nMaingameUI.ResetScore();                
                 for (int i = 0; i < nObstacleManager.num; ++i)
                 {
                     nObstacleManager.nObstacle[i].SetPosDir();

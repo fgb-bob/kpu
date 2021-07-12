@@ -33,7 +33,7 @@ public class NMaingameUI
 
     public void SetScoreText()
     {
-        Debug.Log("점수갱신");
+        Debug.Log("점수측정");
         score += Time.deltaTime;
         nTextMaker.SetText(ScoreText, "SCORE : " + Mathf.Round(score).ToString());
     }

@@ -22,13 +22,15 @@ public class NCharacterManager
     public void DecreaseLife(int damage)
     {
         life -= damage;
+        Debug.Log("체력 감소! 현재 체력 : " + life);
     }
 
     public void IncreaseLife(int amount)
     {
         if (life < maxLife)
-        {
+        {            
             life += amount;
+            Debug.Log("체력 증가! 현재 체력 : " + life);
         }
     }
 
