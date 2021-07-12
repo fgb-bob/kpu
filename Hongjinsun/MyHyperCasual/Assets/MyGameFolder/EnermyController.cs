@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnermyController
 {
-    float max = 0.5f;
+    float max = 0.2f;
     float min = 0.01f;
     public void move(GameObject enermy)
     {
@@ -12,7 +12,6 @@ public class EnermyController
             enermy.transform.Translate(-Random.Range(min, max), 0, 0);
         else
             enermy.transform.position = new Vector2(0, -2.89f);
-
     }
 
 

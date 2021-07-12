@@ -5,25 +5,43 @@ using UnityEngine;
 public class Enermy
 {
     EnermyController ec;
-    public void setPhysics(GameObject obj)
+    public GameObject enermy;
+    
+
+    int spawnInt;
+
+    public void Init()
     {
-        obj.AddComponent<Rigidbody2D>();
-        obj.GetComponent<Rigidbody2D>().freezeRotation = true;
-        obj.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
-        Debug.Log("적 ridigbody 컴포넌트 추가");
-        obj.AddComponent<CapsuleCollider2D>();
-        obj.GetComponent<CapsuleCollider2D>().offset = new Vector2(0, 0.2f);
-        obj.GetComponent<CapsuleCollider2D>().size = new Vector2(0.8f, 2.8f);
-        obj.GetComponent<CapsuleCollider2D>().isTrigger = true;
-        Debug.Log("적 collider 컴포넌트 추가");
-    }
-    public void setEC(EnermyController setEC)
-    {
-        ec = setEC;
+        enermy = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Enermy"));
+        ec = new EnermyController();
+        spawnInt = Random.Range(0, 20);
+
+        if (spawnInt % 2 == 0)
+            enermy.transform.position = new Vector2(-10, -2.89f);
+        else
+            enermy.transform.position = new Vector2(10, -2.89f);
+
+        enermy.AddComponent<Rigidbody2D>();
+        enermy.GetComponent<Rigidbody2D>().freezeRotation = true;
+        enermy.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+
+        enermy.AddComponent<CapsuleCollider2D>();
+        enermy.GetComponent<CapsuleCollider2D>().offset = new Vector2(0, 0.2f);
+        enermy.GetComponent<CapsuleCollider2D>().size = new Vector2(0.8f, 2.8f);
+        enermy.GetComponent<CapsuleCollider2D>().isTrigger = true;
     }
 
     public EnermyController getEC()
     {
         return ec;
+    }
+
+    public GameObject getEnermy()
+    {
+        return enermy;
+    }
+    public void DestroyObj()
+    {
+        GameObject.Destroy(enermy);
     }
 }

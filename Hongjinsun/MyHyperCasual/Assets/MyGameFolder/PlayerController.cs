@@ -36,8 +36,6 @@ public class PlayerController
 
     public void OnTriggerEnter2DToSide(Collider2D other)
     {
-        Debug.Log("충돌했정!");
-
         if (other.transform.position.x > 0)
         {
             rigid.velocity = myVelocity * 0;
@@ -57,6 +55,7 @@ public class PlayerController
             rigid.velocity = myVelocity * 0;
             boxCollider.enabled = false;    // 멈추면 공격을 못해......
         }
+
         //if ( other.gameObject.tag == "rightside" || other.gameObject.tag == "enermy" )
         //{
         //    rigid.velocity = myVelocity * 0;

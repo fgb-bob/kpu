@@ -7,6 +7,11 @@ public class Share
         public static class Prefab
         {
             public static readonly string Root = "Prefabs/UIRoot";
+            public static readonly string Title = "Prefabs/TitleUI";
+            public static readonly string Dead = "Prefabs/DeadUI";
+            public static readonly string Clear = "Prefabs/ClearUI";
+            public static string Enermy = "Prefabs/Enermy";
+
         }
     }
 
