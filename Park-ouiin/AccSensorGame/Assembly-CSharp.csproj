@@ -56,34 +56,36 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\New\NMaingameUI.cs" />
+    <Compile Include="Assets\Scripts\New\NTextMaker.cs" />
+    <Compile Include="Assets\ScriptableObject\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Previous\IButtonMaker.cs" />
     <Compile Include="Assets\Scripts\Previous\TextMaker.cs" />
+    <Compile Include="Assets\Scripts\New\NObstacle.cs" />
+    <Compile Include="Assets\Scripts\New\NObstacleManager.cs" />
+    <Compile Include="Assets\Scripts\New\NUtility.cs" />
+    <Compile Include="Assets\Scripts\New\NShare.cs" />
+    <Compile Include="Assets\Scripts\New\NResultUI.cs" />
     <Compile Include="Assets\Scripts\Previous\UIManager.cs" />
     <Compile Include="Assets\Scripts\Previous\ObstacleManager.cs" />
     <Compile Include="Assets\Scripts\Previous\UIRoot.cs" />
     <Compile Include="Assets\Scripts\Previous\GameManager.cs" />
     <Compile Include="Assets\Scripts\Previous\ResultUI.cs" />
+    <Compile Include="Assets\Scripts\New\NTitleUI.cs" />
+    <Compile Include="Assets\Scripts\New\NUIRoot.cs" />
+    <Compile Include="Assets\Scripts\New\NPlayer.cs" />
+    <Compile Include="Assets\Scripts\New\NUIManager.cs" />
     <Compile Include="Assets\Scripts\Previous\Share.cs" />
+    <Compile Include="Assets\Scripts\New\NCharacterController.cs" />
     <Compile Include="Assets\Scripts\Previous\CharacterController.cs" />
     <Compile Include="Assets\Scripts\Previous\Player.cs" />
+    <Compile Include="Assets\Scripts\New\NCharacterManager.cs" />
     <Compile Include="Assets\Scripts\Previous\Obstacle.cs" />
     <Compile Include="Assets\Scripts\Previous\TitleUI.cs" />
     <Compile Include="Assets\Scripts\Previous\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Previous\MaingameUI.cs" />
-    <Compile Include="Assets\Scripts\New\NUIRoot.cs" />
-    <Compile Include="Assets\Scripts\New\NShare.cs" />
-    <Compile Include="Assets\Scripts\New\NGameManager.cs" />
-    <Compile Include="Assets\Scripts\New\NUIManager.cs" />
-    <Compile Include="Assets\Scripts\New\NTitleUI.cs" />
     <Compile Include="Assets\Scripts\New\NIButtonMaker.cs" />
-    <Compile Include="Assets\Scripts\New\NMaingameUI.cs" />
-    <Compile Include="Assets\Scripts\New\NResultUI.cs" />
-    <Compile Include="Assets\Scripts\New\NCharacterController.cs" />
-    <Compile Include="Assets\Scripts\New\NCharacterManager.cs" />
-    <Compile Include="Assets\Scripts\New\NPlayer.cs" />
-    <Compile Include="Assets\Scripts\New\NObstacle.cs" />
-    <Compile Include="Assets\Scripts\New\NObstacleManager.cs" />
-    <Compile Include="Assets\Scripts\New\NTextMaker.cs" />
+    <Compile Include="Assets\Scripts\New\NGameManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

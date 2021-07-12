@@ -1,4 +1,5 @@
 public interface NIButtonMaker
 {
-    void OnClick(int func);
+    public enum Func { };
+    void OnClick(Func func);
 }
