@@ -1,0 +1,16 @@
+@ 질문 리스트 @
+
+1. ButtonManager에서 Button 클릭 함수 관리.
+Button을 누르면 Launcher에서 함수 호출
+-> ButtonManager에서 Launcher를 참조. 
+    OnClick()에서 Launcher.PlayGame()을 호출
+    => 문제 : Launcher에서 ButtonManager의 Init()를 호출하려면 ButtonManager를 참조해야 하고 
+                 순환 참조 발생.
+         => 그렇다면 ButtonManager의 Init()를 어디서 호출해야하나?
+
+
+
+2. static
+static을 사용하면 참조를 하는게 아니기 때문에 class간의 관계성(참조, 연관, 종속 등)이 없는건지?
+ex) ButtonManager의 Button, Click 함수를 static으로 선언,   Launcher를 참조.
+     Launcher에서 Button, Click함수를 사용 -> 이 관계가 순환 참조가 아닌지?

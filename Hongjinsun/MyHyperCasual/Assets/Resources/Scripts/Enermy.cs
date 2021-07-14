@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class Enermy
 {
-    EnermyController ec;
-    public GameObject enermy;
-    
-
-    int spawnInt;
+    GameObject enermy;
+    float speed; // 0.01 ~ 0.2
 
     public void Init()
     {
         enermy = GameObject.Instantiate(Resources.Load<GameObject>("Prefabs/Enermy"));
-        ec = new EnermyController();
-        spawnInt = Random.Range(0, 20);
-
-        if (spawnInt % 2 == 0)
-            enermy.transform.position = new Vector2(-10, -2.89f);
-        else
-            enermy.transform.position = new Vector2(10, -2.89f);
 
         enermy.AddComponent<Rigidbody2D>();
         enermy.GetComponent<Rigidbody2D>().freezeRotation = true;
@@ -31,17 +21,28 @@ public class Enermy
         enermy.GetComponent<CapsuleCollider2D>().isTrigger = true;
     }
 
-    public EnermyController getEC()
-    {
-        return ec;
-    }
-
-    public GameObject getEnermy()
+    public GameObject getEnermyObj()
     {
         return enermy;
     }
+
+    public CapsuleCollider2D getCapsuleCollider()
+    {
+        return enermy.GetComponent<CapsuleCollider2D>();
+    }
+
     public void DestroyObj()
     {
         GameObject.Destroy(enermy);
+    }
+
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
     }
 }
