@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2eccd39c74dd0b4bb9df278d95c5276, type: 3}
   m_Name: Obstacle Data
   m_EditorClassIdentifier: 
-  maxObstacle: 100
+  maxObstacle: 200
   obstacleTypeDelay: 10
   pos_x: 10
   pos_y: 6

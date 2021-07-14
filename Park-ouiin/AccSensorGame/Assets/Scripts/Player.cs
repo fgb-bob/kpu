@@ -8,7 +8,7 @@ public class Player
     // 플레이어 초기화
     public void Init(float speed)
     {
-        goPlayer = Share.Util.InstantiatePrefab(Share.Path.Prefab.Character, UIRoot.maingameCanvas);
+        goPlayer = Share.Util.InstantiatePrefab(Share.Path.Prefab.Character, UIRoot.noneUIGameObject);
         playerController = new PlayerController();
         playerController.Init(speed);
     }

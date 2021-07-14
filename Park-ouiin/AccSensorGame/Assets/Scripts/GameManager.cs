@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    GameObject emptyObject;
-    GameObject uiRoot;    
+    GameObject uiRoot;
 
     UIManager uiManager;
     PlayerManager playerManager;
@@ -26,29 +25,15 @@ public class GameManager : MonoBehaviour
         playerManager = new PlayerManager();
         lifeManager = new LifeManager();
         lifeManager.Init(playerData.life, playerData.maxLife);
-        uiManager = new UIManager();
-        uiManager.UISetting(lifeManager.GetMaxLife());
+        uiManager = new UIManager();        
         obstacleManager = new ObstacleManager();
+        uiManager.UISetting(playerManager, playerData, obstacleManager, lifeManager);
     }
 
     void FixedUpdate()
     {
         switch (uiManager.GetState())
         {
-            case UIManager.State.TITLE: // 타이틀 화면
-                // 메인캔버스가 활성화 되어있을 때
-                if (Utility.FindVisibleGameobjectWithName(emptyObject, "MaingameCanvas") != null)
-                {                    
-                    // 플레이어 생성
-                    playerManager.Init(playerData.speed);
-                    // 장애물 생성
-                    obstacleManager.Init();
-                    obstacleManager.Generate(obstacleManager.GetObstacleNum());
-                    uiManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
-                    // 상태 변경
-                    uiManager.SetState(UIManager.State.MAINGAME);
-                }
-                break;
             case UIManager.State.MAINGAME: // 메인 게임 플레이 화면
                 // 플레이어 이동
                 playerManager.GetPlayer().GetPlayerController().Move();
@@ -57,7 +42,7 @@ public class GameManager : MonoBehaviour
                 // 10점 오를때마다 장애물 1개 추가 생성
                 if (((int)uiManager.GetMaingameUI().GetScore() / playerData.monsterDelay) == obstacleManager.GetObstacleNum())
                     obstacleManager.Generate(obstacleManager.GetObstacleNum());
-                // 장애물 이동
+                // 장애물 이동               
                 obstacleManager.Moving(obstacleManager.GetObstacleNum(), playerManager.GetPlayer().GetPlayerGameObject(), lifeManager, uiManager);
                 // 플레이어 체력 0일 경우
                 if (lifeManager.GetLife() <= 0)
@@ -71,25 +56,7 @@ public class GameManager : MonoBehaviour
                     // 상태 변경
                     uiManager.SetState(UIManager.State.RESULT);
                 }
-                break;
-            case UIManager.State.RESULT: // 결과창 화면
-                // 결과창캔버스가 비활성화 되어있을 경우
-                if (Utility.FindVisibleGameobjectWithName(emptyObject, "ResultCanvas") == null)
-                {                    
-                    // 플레이어 초기화
-                    playerManager.Reset();
-                    // 장애물 초기화 및 재생성
-                    obstacleManager.ResetObstacleNum();
-                    obstacleManager.Generate(obstacleManager.GetObstacleNum());
-                    // 플레이어 체력 초기화
-                    lifeManager.ResetLife(playerData.life);
-                    // UI 초기화
-                    uiManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
-                    uiManager.GetMaingameUI().ResetScore();
-                    // 상태 변경
-                    uiManager.SetState(UIManager.State.MAINGAME);
-                }
-                break;                
+                break;              
         }
     }
 }

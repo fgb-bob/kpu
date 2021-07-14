@@ -30,16 +30,16 @@ public class Utility
     }
 
     // 보이는 게임 오브젝트를 이름으로 찾는 함수
-    public static GameObject FindVisibleGameobjectWithName(GameObject gameObject, string name)
+    public static GameObject FindVisibleGameobjectWithName(GameObject gameObject, string findObjectName)
     {
-        return gameObject = GameObject.Find(name);
+        return gameObject = GameObject.Find(findObjectName);
     }
 
     // 안보이는 게임 오브젝트를 이름으로 찾는 함수
-    public static GameObject FindInvisibleGameobjectWithName(GameObject gameObject, string name)
+    public static GameObject FindInvisibleGameobjectWithName(GameObject gameObject, string rootUIName, string findObjectName)
     {
-        gameObject = FindVisibleGameobjectWithName(gameObject, "UIRoot(Clone)");;
-        return gameObject.transform.Find(name).gameObject;
+        gameObject = FindVisibleGameobjectWithName(gameObject, rootUIName);;
+        return gameObject.transform.Find(findObjectName).gameObject;
     }
 
     // 화면이 꺼지지 않도록 하는 함수

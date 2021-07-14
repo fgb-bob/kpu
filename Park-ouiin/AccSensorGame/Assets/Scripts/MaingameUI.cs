@@ -12,7 +12,7 @@ public class MaingameUI
     // 메인게임 UI 생성
     public void Init(int maxLife)
     {
-        MaingameImage = Share.Util.InstantiatePrefab(Share.Path.Prefab.Maingame, UIRoot.maingameCanvas);
+        MaingameImage = Share.Util.InstantiatePrefab(Share.Path.Prefab.Maingame, UIRoot.noneUIGameObject);
         ScoreText = Share.Util.InstantiatePrefab(Share.Path.Prefab.ScoreText, UIRoot.maingameCanvas);
         Heart = new GameObject[maxLife];
         for (int i = 0; i < maxLife; ++i)
@@ -22,8 +22,9 @@ public class MaingameUI
             heartPos.x -= 40f * i;
             Heart[i].GetComponent<RectTransform>().anchoredPosition = heartPos;
         }
-        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "MaingameCanvas");        
+        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "MaingameCanvas");
         Utility.Invisible(gameObject);
+        Utility.Invisible(MaingameImage);
     }
 
     // 점수 글자 변경

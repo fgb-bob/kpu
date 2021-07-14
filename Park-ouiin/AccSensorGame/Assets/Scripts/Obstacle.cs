@@ -26,31 +26,32 @@ public class Obstacle
         switch (Random.Range(1, 5))
         {
             case 1:
-                pos.x = Random.Range(-obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_x);
-                pos.y = Random.Range(obstacleSpawnData.min_pos_y, obstacleSpawnData.max_pos_y);
-                dir.x = Random.Range(-obstacleSpawnData.max_speed, obstacleSpawnData.max_speed);
-                dir.y = Random.Range(-obstacleSpawnData.max_speed, -obstacleSpawnData.min_speed);
+                pos = RandomVector2(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, obstacleSpawnData.min_pos_y);
+                dir = RandomVector2(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, -obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed);
                 break;
             case 2:
-                pos.x = Random.Range(obstacleSpawnData.min_pos_x, obstacleSpawnData.max_pos_x);
-                pos.y = Random.Range(-obstacleSpawnData.max_pos_y, obstacleSpawnData.max_pos_y);
-                dir.x = Random.Range(-obstacleSpawnData.max_speed, -obstacleSpawnData.min_speed);
-                dir.y = Random.Range(-obstacleSpawnData.max_speed, obstacleSpawnData.max_speed);
+                pos = RandomVector2(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.max_pos_y);
+                dir = RandomVector2(-obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
                 break;
             case 3:
-                pos.x = Random.Range(-obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_x);
-                pos.y = Random.Range(-obstacleSpawnData.max_pos_y, -obstacleSpawnData.min_pos_y);
-                dir.x = Random.Range(-obstacleSpawnData.max_speed, obstacleSpawnData.max_speed);
-                dir.y = Random.Range(obstacleSpawnData.min_speed, obstacleSpawnData.max_speed);
+                pos = RandomVector2(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, -obstacleSpawnData.min_pos_y, -obstacleSpawnData.max_pos_y);
+                dir = RandomVector2(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, obstacleSpawnData.min_speed);
                 break;
             case 4:
-                pos.x = Random.Range(-obstacleSpawnData.max_pos_x, -obstacleSpawnData.min_pos_x);
-                pos.y = Random.Range(-obstacleSpawnData.min_pos_y, obstacleSpawnData.max_pos_y);
-                dir.x = Random.Range(obstacleSpawnData.min_speed, obstacleSpawnData.max_speed);
-                dir.y = Random.Range(-obstacleSpawnData.max_speed, obstacleSpawnData.max_speed);
+                pos = RandomVector2(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.min_pos_y);
+                dir = RandomVector2(obstacleSpawnData.max_speed, obstacleSpawnData.min_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
                 break;
         }
         goObstacle.transform.position = pos;
+    }
+
+    // Vector2 생성 함수
+    Vector2 RandomVector2(float max_pos_x, float min_pos_x, float max_pos_y, float min_pos_y)
+    {
+        Vector2 vector;
+        vector.x = Random.Range(min_pos_x, max_pos_x);
+        vector.y = Random.Range(min_pos_y, max_pos_y);
+        return vector;
     }
 
     // 장애물 이동 함수

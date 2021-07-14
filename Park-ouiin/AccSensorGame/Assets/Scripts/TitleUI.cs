@@ -15,12 +15,19 @@ public class TitleUI
         startbtn.GetComponent<Button>().onClick.AddListener(() => StartbtnClick());
     }
 
-    // 시작 버튼 함순
+    // 시작 버튼 함수
     void StartbtnClick()
     {        
         gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
-        Utility.Invisible(gameObject);      
-        gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "MaingameCanvas");
+        Utility.Invisible(gameObject);
+        gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "UIRoot(Clone)", "MaingameCanvas");
         Utility.Visible(gameObject);
+        gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "NoneUIGameObject", "Maingame(Clone)");
+        Utility.Visible(gameObject);
+    }
+
+    public GameObject GetStartbtn()
+    {
+        return startbtn;
     }
 }

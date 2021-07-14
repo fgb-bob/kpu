@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f95d5f5f0c93db14699e4f4d02f0fcd1, type: 3}
   m_Name: Player Data
   m_EditorClassIdentifier: 
-  life: 3
+  life: 2
   maxLife: 6
   speed: 500
-  monsterDelay: 10
+  monsterDelay: 5

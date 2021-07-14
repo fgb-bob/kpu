@@ -37,4 +37,9 @@ public class ResultUI
     {
         return gameObject;
     }
+
+    public GameObject GetRestartbtn()
+    {
+        return restartbtn;
+    }
 }
