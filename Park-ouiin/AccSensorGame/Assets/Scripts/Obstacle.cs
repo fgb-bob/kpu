@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class Obstacle
 {
-    // 장애물 스폰관련 데이터 불러오기
     ObstacleSpawnData obstacleSpawnData = Resources.Load("ScriptableObject/Obstacle Spawn Data") as ObstacleSpawnData;
 
     GameObject goObstacle;
@@ -10,16 +9,45 @@ public class Obstacle
     Vector2 dir;
     bool type;
 
-    // 타입에 따른 장애물 생성함수
     public void Generate()
     {
         if (type)
             goObstacle = Share.Util.InstantiatePrefab(Share.Path.Prefab.ItemHeart, null);
         else
+        {
             goObstacle = Share.Util.InstantiatePrefab(Share.Path.Prefab.Obstacle, null);
+            SetAnimator();
+        }
     }
 
-    // 장애물 생성 위치 및 나아갈 방향과 속도 설정 함수
+    void SetAnimator()
+    {
+        switch (Random.Range(1, 9))
+        {
+            case 2:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Banana") as RuntimeAnimatorController;
+                break;
+            case 3:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Cherry") as RuntimeAnimatorController;
+                break;
+            case 4:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Kiwi") as RuntimeAnimatorController;
+                break;
+            case 5:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Melon") as RuntimeAnimatorController;
+                break;
+            case 6:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Orange") as RuntimeAnimatorController;
+                break;
+            case 7:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Pineapple") as RuntimeAnimatorController;
+                break;
+            case 8:
+                goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Strawberry") as RuntimeAnimatorController;
+                break;
+        }
+    }    
+
     public void SetPosDir()
     {
         pos = goObstacle.transform.position;
@@ -45,7 +73,6 @@ public class Obstacle
         goObstacle.transform.position = pos;
     }
 
-    // Vector2 생성 함수
     Vector2 RandomVector2(float max_pos_x, float min_pos_x, float max_pos_y, float min_pos_y)
     {
         Vector2 vector;
@@ -54,19 +81,16 @@ public class Obstacle
         return vector;
     }
 
-    // 장애물 이동 함수
     public void Move()
     {
         goObstacle.GetComponent<Rigidbody2D>().velocity = dir;
     }
 
-    // 장애물 오브젝트 반환
     public GameObject GetgoObstacle()
     {
         return goObstacle;
     }
 
-    // 장애물 타입 반환
     public bool GetBool()
     {
         return type;

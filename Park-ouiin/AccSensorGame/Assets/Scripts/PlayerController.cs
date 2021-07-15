@@ -8,7 +8,6 @@ public class PlayerController
     Rigidbody2D rig;
     Vector3 dir;
 
-    // 플레이어 컨트롤러 초기화
     public void Init(float speed)
     {
         playerGameObject = GameObject.FindGameObjectWithTag("Player");
@@ -26,13 +25,12 @@ public class PlayerController
             animator.SetBool("dir", false);
     }
 
-    // 플레이어 이동 함수
     public void Move()
     {
         dir = Vector3.zero;
 
-        dir.x = Input.acceleration.x;
-        dir.y = Input.acceleration.y;
+        dir.x = Input.acceleration.x * 2;
+        dir.y = Input.acceleration.y * 2;
 
         Checkdir(dir);
 
@@ -42,7 +40,7 @@ public class PlayerController
         dir *= Time.deltaTime;
 
         rig.velocity = new Vector2(dir.x * speed, dir.y * speed);
-        // 화면 밖을 벗어나지 못하게 설정
+
         Utility.NoScreenRangeOut(playerGameObject);
     }
 }

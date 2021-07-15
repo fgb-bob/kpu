@@ -7,7 +7,6 @@ public class ResultUI
     GameObject quitbtn;
     GameObject gameObject;
 
-    // 결과창 UI 초기화
     public void Init()
     {
         restartbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.Restartbtn, UIRoot.resultCanvas);
@@ -19,20 +18,17 @@ public class ResultUI
         Utility.Invisible(gameObject);
     }
 
-    // 재시작 버튼 함수
     void RestartbtnClick()
     {
         Utility.Resume();
         Utility.Invisible(gameObject);
     }
 
-    // 종료 버튼 함수
     void QuitbtnClick()
     {
         Application.Quit();
     }
 
-    // ResultCanvas가 담긴 게임 오브젝트 반환
     public GameObject GetGameObject()
     {
         return gameObject;

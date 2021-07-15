@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Resources\ScriptableObject\ObstacleSpawnData.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\JudgeManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

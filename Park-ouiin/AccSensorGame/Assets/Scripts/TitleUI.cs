@@ -7,7 +7,6 @@ public class TitleUI
     GameObject gameObject;
     GameObject startbtn;
 
-    // 타이틀 UI 초기화
     public void Init()
     {
         titleImage = Share.Util.InstantiatePrefab(Share.Path.Prefab.Title, UIRoot.titleCanvas);
@@ -15,7 +14,6 @@ public class TitleUI
         startbtn.GetComponent<Button>().onClick.AddListener(() => StartbtnClick());
     }
 
-    // 시작 버튼 함수
     void StartbtnClick()
     {        
         gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
