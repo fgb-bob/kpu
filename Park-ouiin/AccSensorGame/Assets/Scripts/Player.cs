@@ -12,9 +12,9 @@ public class Player
         playerController.Init(speed);
     }
 
-    public PlayerController GetPlayerController()
+    public void ControllerMoveUpdate()
     {
-        return playerController;
+        playerController.Move();
     }
 
     public GameObject GetPlayerGameObject()

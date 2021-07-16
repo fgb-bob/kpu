@@ -17,18 +17,18 @@ public class JudgeManager
     {
         for (int i = 0; i < obstacleManager.GetObstacleNum(); ++i)
         {
-            if (Utility.Touching(playerGameObject.GetComponent<Collider2D>(), obstacleManager.GetObstacles()[i].GetgoObstacle().gameObject.GetComponent<Collider2D>()))
+            if (Utility.Touching(playerGameObject.GetComponent<Collider2D>(), obstacleManager.GetGameObjectObstacle(i).gameObject.GetComponent<Collider2D>()))
             {
-                obstacleManager.GetObstacles()[i].SetPosDir();
-                if (obstacleManager.GetObstacles()[i].GetBool()) // 하트 장애물일 경우
+                obstacleManager.SetPosDir(i);
+                if (obstacleManager.GetType(i)) // 하트 장애물일 경우
                 {
                     lifeManager.IncreaseLife(1);
-                    uiManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
                 }
                 else // 그외 장애물일 경우
                 {
                     lifeManager.DecreaseLife(1);
-                    uiManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
                 }
             }
         }

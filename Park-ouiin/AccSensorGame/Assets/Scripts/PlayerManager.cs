@@ -10,9 +10,14 @@ public class PlayerManager
         player.Init(speed);
     }
 
-    public Player GetPlayer()
+    public void PlayerMoveUpdate()
     {
-        return player;
+        player.ControllerMoveUpdate();
+    }
+
+    public GameObject GetGameObjectPlayer()
+    {
+        return player.GetPlayerGameObject();
     }
 
     public void Reset()

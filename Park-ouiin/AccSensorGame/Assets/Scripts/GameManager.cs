@@ -35,21 +35,21 @@ public class GameManager : MonoBehaviour
         switch (uiManager.GetState())
         {
             case UIManager.State.MAINGAME:
-                playerManager.GetPlayer().GetPlayerController().Move();
-                uiManager.GetMaingameUI().SetScoreText();      
-                
-                // 10점 오를때마다 장애물 1개 추가 생성
-                if (((int)uiManager.GetMaingameUI().GetScore() / playerData.monsterDelay) == obstacleManager.GetObstacleNum())
+                playerManager.PlayerMoveUpdate();
+                uiManager.SetScore();
+
+                // playerData.monsterDelay마다 장애물 1개 추가 생성
+                if (((int)uiManager.GetScore() / playerData.monsterDelay) == obstacleManager.GetObstacleNum())
                     obstacleManager.Generate(obstacleManager.GetObstacleNum());      
                 
                 obstacleManager.Moving();
                 // 장애물과 플레이어 충돌 판단
-                judgeManager.judging(playerManager.GetPlayer().GetPlayerGameObject());
+                judgeManager.judging(playerManager.GetGameObjectPlayer());
 
                 if (lifeManager.GetLife() <= 0)
                 {                    
                     obstacleManager.DestroyObject();
-                    Utility.Visible(uiManager.GetResultUI().GetGameObject());
+                    Utility.Visible(uiManager.GetGameObjectResultUI());
                     Utility.Pause();
                     uiManager.SetState(UIManager.State.RESULT);
                 }

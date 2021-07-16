@@ -46,9 +46,19 @@ public class ObstacleManager
         maxObstacleNum = 0;
     }
 
-    public Obstacle[] GetObstacles()
+    public bool GetType(int index)
     {
-        return obstacle;
+        return obstacle[index].GetBool();
+    }
+
+    public void SetPosDir(int index)
+    {
+        obstacle[index].SetPosDir();
+    }
+
+    public GameObject GetGameObjectObstacle(int index)
+    {
+        return obstacle[index].GetgoObstacle();
     }
 
     // 장애물 특정 범위 벗어났는지 확인 함수

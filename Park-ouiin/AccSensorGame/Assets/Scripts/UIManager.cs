@@ -26,8 +26,8 @@ public class UIManager
         obstacleManager.ResetObstacleNum();
         obstacleManager.Generate(obstacleManager.GetObstacleNum());
         lifeManager.ResetLife(playerData.life);
-        GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
-        GetMaingameUI().ResetScore();
+        maingameUI.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+        maingameUI.ResetScore();
         SetState(UIManager.State.MAINGAME);
     }
 
@@ -36,18 +36,28 @@ public class UIManager
         playerManager.Init(playerData.speed);
         obstacleManager.Init();
         obstacleManager.Generate(obstacleManager.GetObstacleNum());
-        GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+        maingameUI.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
         SetState(UIManager.State.MAINGAME);
     }
 
-    public MaingameUI GetMaingameUI()
+    public GameObject GetGameObjectResultUI()
     {
-        return maingameUI;
+        return resultUI.GetGameObject();
     }
 
-    public ResultUI GetResultUI()
+    public void SetScore()
     {
-        return resultUI;
+        maingameUI.SetScoreText();
+    }
+
+    public float GetScore()
+    {
+        return maingameUI.GetScore();
+    }
+
+    public void SetHeartActive(int life, int maxLife)
+    {
+        maingameUI.SetHeartActive(life, maxLife);
     }
 
     public State GetState()
