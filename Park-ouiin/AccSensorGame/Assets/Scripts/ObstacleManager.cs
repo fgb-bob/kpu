@@ -5,7 +5,7 @@ public class ObstacleManager
     ObstacleData obstacleData = Resources.Load("ScriptableObject/Obstacle Data") as ObstacleData;
 
     Obstacle[] obstacle;
-    int maxObstacleNum = 0; // 현재 장애물 갯수 
+    int maxObstacleNum = 0; // 현재 장애물 갯수
 
     public void Init()
     {

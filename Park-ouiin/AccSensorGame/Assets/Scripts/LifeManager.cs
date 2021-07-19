@@ -12,7 +12,7 @@ public class LifeManager
 
     public void DecreaseLife(int damage)
     {
-        life -= damage;        
+        life -= damage;
     }
     public void IncreaseLife(int amount)
     {

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerController
 {
-    float speed;        
+    float speed;
     GameObject playerGameObject;
     Animator animator;
     Rigidbody2D rig;

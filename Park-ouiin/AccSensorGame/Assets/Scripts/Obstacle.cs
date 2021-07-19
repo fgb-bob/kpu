@@ -46,7 +46,7 @@ public class Obstacle
                 goObstacle.GetComponent<Animator>().runtimeAnimatorController = Resources.Load("Animation/Strawberry") as RuntimeAnimatorController;
                 break;
         }
-    }    
+    }
 
     public void SetPosDir()
     {
