@@ -4,11 +4,6 @@ using UnityEngine.UI;
 
 public class ButtonManager : IButton
 {
-    // UIManager에서 play, resume, quit BTN 관리하고 -> 버튼 누르면 Launcher의 함수를 호출해야 해
-    // PlayerController에서 right, left BTN 관리하고 싶다. -> 버튼 누르면 PlayerController의 move를 호출해야해.
-    // Share.Util에서 static으로 Button, Click함수 선언하고 사용하면?
-    // Scriptable Object로 에너미, 플레이어 변수 설정해주는 거? 
-
     Button rightButton;
     Button leftButton;
     Button playButton;
@@ -16,15 +11,12 @@ public class ButtonManager : IButton
     GameObject[] quitButton;
     Button nextButton;
     GameObject player;
-    PlayerController pc;
     SceneManager sceneManager;
 
     public void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        Debug.Log(player);
-        pc = new PlayerController();
-
+        
         rightButton = GameObject.Find("RightButton").GetComponent<Button>();
         leftButton = GameObject.Find("LeftButton").GetComponent<Button>();
 

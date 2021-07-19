@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
 
 public class SceneManager
 {
@@ -60,10 +56,8 @@ public class SceneManager
         // EnermyGen == true면 에너미 생성
         enermyGenerator.spawnEnermy();
         enermyController.setEnermies(enermyGenerator.getEnermies());
-
         enermyController.move();
         playerController.move();
-
 
         if (enermyGenerator.getEnermies().Count == enermyGenerator.getMaxEnermy())
         {
@@ -102,6 +96,9 @@ public class SceneManager
 
     public void ResumeGame()
     {
+        // reset하는 걸 PlayGame()과 합치고...
+        // static Util 클래스에 Play, Resume, Quit () 만들고, 
+
         state = 1;
         enermyController.setSpeedState(true);
         enermyGenerator.resetData();

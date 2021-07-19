@@ -3,7 +3,7 @@ using UnityEngine;
 public class Launcher : MonoBehaviour
 {
     SceneManager sceneManager;
-    
+
     private void Start()
     {
         sceneManager = new SceneManager();

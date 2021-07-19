@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BackgroundManager
 {
@@ -24,19 +22,9 @@ public class BackgroundManager
         };
     }
 
-    public BoxCollider2D getLeftSide()
+    public BoxCollider2D getCollider(string sidename)
     {
-        return sideCollider["left"];
-    }
-
-    public BoxCollider2D getRightSide()
-    {
-        return sideCollider["right"];
-    }
-
-    public BoxCollider2D getCenterSide()
-    {
-        return sideCollider["center"];
+        return sideCollider[sidename];
     }
 }
 

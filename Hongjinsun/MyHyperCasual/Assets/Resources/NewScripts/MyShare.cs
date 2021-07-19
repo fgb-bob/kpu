@@ -1,6 +1,5 @@
 using UnityEngine;
-
-public class Share
+public class MyShare
 {
     public static class Path
     {
@@ -10,6 +9,9 @@ public class Share
             public static readonly string Title = "Prefabs/TitleUI";
             public static readonly string Dead = "Prefabs/DeadUI";
             public static readonly string Clear = "Prefabs/ClearUI";
+            public static readonly string Background = "Prefabs/Background";
+            public static string Player = "Prefabs/Player";
+            public static string Enermy = "Prefabs/Enermy";
         }
     }
 
@@ -27,5 +29,7 @@ public class Share
         {
             return GameObject.Instantiate(Bundle.LoadAsset<GameObject>(path), parent);
         }
+
+
     }
 }
