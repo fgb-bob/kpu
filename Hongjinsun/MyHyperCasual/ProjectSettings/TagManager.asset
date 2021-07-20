@@ -10,6 +10,7 @@ TagManager:
   - LGenerator
   - RGenerator
   - enermy
+  - QuitButton
   layers:
   - Default
   - TransparentFX
