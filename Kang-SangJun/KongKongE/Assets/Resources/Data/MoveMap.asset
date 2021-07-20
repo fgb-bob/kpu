@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: MoveMap
+  m_EditorClassIdentifier: Assembly-CSharp::MoveMapData
+  SpawnLevel: 0200000003000000020000000200000002000000
+  M1_DataType: 0000000000000000
+  M1_DataPrefabs:
+  - {fileID: 633974645000866844, guid: 601c279a80c578b458626d9d6aaca5e1, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  M1_DataPos:
+  - {x: 0, y: 1, z: 6.07}
+  - {x: 0, y: 1.5, z: 15}
+  M1_DataRotation:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  M1_DataScale:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  M2_DataType: 000000000000000000000000
+  M2_DataPrefabs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  M2_DataPos:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  M2_DataRotation:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  M2_DataScale:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}

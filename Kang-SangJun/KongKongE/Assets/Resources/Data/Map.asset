@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Map
+  m_EditorClassIdentifier: Assembly-CSharp::MapData
+  M1_Count: 10
+  DataType: 
+  DataPrefabs:
+  - {fileID: 9153205453279644544, guid: 0a7700359f9be854b853c6b5ab5f510a, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 9153205453279644544, guid: 0a7700359f9be854b853c6b5ab5f510a, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 9153205453279644544, guid: 0a7700359f9be854b853c6b5ab5f510a, type: 3}
+  - {fileID: 524837992170690413, guid: 9bdfd483444cfc848b88c691cbf520e3, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  M1_DataPos:
+  - {x: 0, y: 0, z: 2.6}
+  - {x: 0, y: 0, z: 6.07}
+  - {x: 0, y: 0, z: 16.38}
+  - {x: -0.29, y: 0, z: 51.59}
+  - {x: -1.87, y: 0, z: 22.75}
+  - {x: 0, y: 0.84, z: 28.69}
+  - {x: 2.14, y: 0, z: 24.74}
+  - {x: 0, y: 0, z: 37.67}
+  - {x: 0, y: 0, z: 44.96}
+  - {x: 0.83, y: 0, z: 10.39}
+  M1_DataRotation:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0.83, y: 10.39, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -1.87, y: 22.75, z: 0}
+  - {x: -1.87, y: 22.75, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: -1.87, y: 22.75, z: 0}
+  M1_DataScale:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  C1_DataPrefabs: {fileID: 169416859459884986, guid: 9579f98f29e195247a0ac52c56fa28ef, type: 3}
+  C1_DataPos: {x: 0, y: 0, z: 10}
+  C1_DataRotation: {x: 0, y: 0, z: 0}
+  C1_DataScale: {x: 1, y: 0.068736, z: 1}
+  M2_DataType: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  M2_DataPrefabs:
+  - {fileID: 9153205453279644544, guid: 0a7700359f9be854b853c6b5ab5f510a, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 524837992170690413, guid: 9bdfd483444cfc848b88c691cbf520e3, type: 3}
+  - {fileID: 524837992170690413, guid: 9bdfd483444cfc848b88c691cbf520e3, type: 3}
+  - {fileID: 9153205453279644544, guid: 0a7700359f9be854b853c6b5ab5f510a, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  - {fileID: 6451877196656120970, guid: d9f7a26a424bdfb4095c85c8c72b7339, type: 3}
+  M2_DataPos:
+  - {x: 3.4525626, y: 0, z: 42}
+  - {x: 2.58, y: 0, z: 46}
+  - {x: 4.92, y: 0, z: 50}
+  - {x: 1.94, y: 0, z: 60}
+  - {x: 2.515, y: 0, z: 70}
+  - {x: 2.515, y: 0, z: 80}
+  - {x: 3.73, y: 0, z: 85}
+  - {x: 2.69, y: 0, z: 65}
+  - {x: -0.66605663, y: 0, z: 68.51038}
+  - {x: -1.1555281, y: 0, z: 71.8091}
+  M2_DataRotation:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 20, z: 0}
+  - {x: 0, y: 10, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 80, z: 0}
+  - {x: 0, y: 82, z: 0}
+  - {x: 0, y: 82, z: 0}
+  M2_DataScale:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
