@@ -1,18 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MyColliderManager 
 {
-    MyPlayerController playerController;
-    MyPlayer player;
+    MyPlayerController m_playerController;
+    MyPlayer m_player;
     GameObject[] m_enermies;
     public bool isDead;
 
     public void Init(MyPlayerController playerController)
     {
-        this.playerController = playerController;
-        player = playerController.player;
+        m_playerController = playerController;
+        m_player = playerController.player;
     }
 
     public void Update()
@@ -35,19 +33,15 @@ public class MyColliderManager
     {
         for (int i = 0; i < m_enermies.Length; ++i)
         {
-            if (player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>())) 
+            if (m_player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>())) 
             { 
-                Debug.Log("플레이어가 적을 공격!");
-                //m_enermies[i].SetActive(false);
                 GameObject.Destroy(m_enermies[i]);
-                playerController.isAttack = true;
-                playerController.SetScore(playerController.GetScore() + 1);
+                m_playerController.isAttack = true;
+                m_playerController.SetScore(m_playerController.GetScore() + 1);
             }
 
-            if ( player.capsule.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
+            if (m_player.capsule.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
             {
-                Debug.Log("적이 플레이어를 공격!");
-                //player.obj.SetActive(false);
                 isDead = true;
                 ResetData();
             }

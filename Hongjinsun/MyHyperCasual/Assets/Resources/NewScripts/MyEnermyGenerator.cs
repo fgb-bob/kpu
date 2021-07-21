@@ -40,7 +40,7 @@ public class MyEnermyGenerator
 
     public void SetMaxEnermy()
     {
-        maxEnermy = Random.Range(10, 20);
+        maxEnermy = Random.Range(20, 50);
         Debug.Log(maxEnermy + "付府 利 积己");
     }
 
@@ -53,7 +53,7 @@ public class MyEnermyGenerator
 
         if (this.enermyGen == true)
         {
-            m_spawnTime = Random.Range(1.0f, 3.0f);
+            m_spawnTime = Random.Range(0.5f, 2.0f);
 
             m_delta += Time.deltaTime;
 
@@ -77,7 +77,7 @@ public class MyEnermyGenerator
 
                 m_delta = 0f;
                 if (m_spawnTime - m_spawnSpeed > 0)
-                    m_spawnSpeed += 0.00005f;
+                    m_spawnSpeed += 0.0005f;
 
             }
             if (cntEnermy == maxEnermy)
