@@ -2,11 +2,24 @@ using UnityEngine;
 
 public class PlayerController
 {
+    public enum GameType { DODGE, UP };
+    GameType type = GameType.DODGE;
+
     float speed;
     GameObject playerGameObject;
     Animator animator;
     Rigidbody2D rig;
     Vector3 dir;
+
+    public void SetGameType(GameType type)
+    {
+        this.type = type;
+    }
+
+    public GameType GetGameType()
+    {
+        return type;
+    }
 
     public void Init(float speed)
     {
@@ -27,20 +40,33 @@ public class PlayerController
 
     public void Move()
     {
+        Debug.Log(dir.y);
         dir = Vector3.zero;
 
         dir.x = Input.acceleration.x * 2;
-        dir.y = Input.acceleration.y * 2;
 
-        Checkdir(dir);
-
-        if (dir.sqrMagnitude > 1)
-            dir.Normalize();
+        if (type == GameType.DODGE)
+        {
+            dir.y = Input.acceleration.y * 2;
+            if (dir.sqrMagnitude > 1)
+                dir.Normalize();
+        }
+        else
+        {
+            dir.y = 9.81f;
+        }        
 
         dir *= Time.deltaTime;
+        Checkdir(dir);
 
-        rig.velocity = new Vector2(dir.x * speed, dir.y * speed);
-
-        Utility.NoScreenRangeOut(playerGameObject);
+        if (type == GameType.DODGE)
+        {
+            rig.velocity = new Vector2(dir.x * speed, dir.y * speed);
+            Utility.NoScreenRangeOut(playerGameObject);
+        }
+        else
+        {
+            rig.AddForce(dir);            
+        }       
     }
 }

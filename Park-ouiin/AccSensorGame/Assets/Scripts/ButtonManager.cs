@@ -3,13 +3,17 @@ using UnityEngine.UI;
 
 public class ButtonManager
 {
-    GameObject startbtn, restartbtn, quitbtn;
+    GameObject dodgeStartbtn, upStartbtn, restartbtn, quitbtn;
     GameObject gameObject;
     public void Init(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
     {
-        startbtn = Utility.FindInvisibleGameobjectWithName(startbtn, "UIRoot(Clone)", "TitleCanvas");
-        startbtn = startbtn.transform.Find("Startbtn(Clone)").gameObject;
-        startbtn.GetComponent<Button>().onClick.AddListener(() => StartbtnClick(playerData, playerManager, obstacleManager, lifeManager, uIManager));
+        upStartbtn = Utility.FindInvisibleGameobjectWithName(upStartbtn, "UIRoot(Clone)", "TitleCanvas");
+        upStartbtn = upStartbtn.transform.Find("UpStartbtn(Clone)").gameObject;
+        upStartbtn.GetComponent<Button>().onClick.AddListener(() => UpStartbtnClick(playerData, playerManager, uIManager));
+
+        dodgeStartbtn = Utility.FindInvisibleGameobjectWithName(dodgeStartbtn, "UIRoot(Clone)", "TitleCanvas");
+        dodgeStartbtn = dodgeStartbtn.transform.Find("DodgeStartbtn(Clone)").gameObject;
+        dodgeStartbtn.GetComponent<Button>().onClick.AddListener(() => DodgeStartbtnClick(playerData, playerManager, obstacleManager, lifeManager, uIManager));
 
         restartbtn = Utility.FindInvisibleGameobjectWithName(restartbtn, "UIRoot(Clone)", "ResultCanvas");
         restartbtn = restartbtn.transform.Find("Restartbtn(Clone)").gameObject;
@@ -20,19 +24,36 @@ public class ButtonManager
         quitbtn.GetComponent<Button>().onClick.AddListener(() => QuitbtnClick());
     }
 
-    void StartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
+    void DodgeStartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
     {
         gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
         Utility.Invisible(gameObject);
         gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "UIRoot(Clone)", "MaingameCanvas");
         Utility.Visible(gameObject);
         gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "NoneUIGameObject", "Maingame(Clone)");
-        Utility.Visible(gameObject);
+        Utility.Visible(gameObject);        
         playerManager.Init(playerData.speed);
+        playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.DODGE);
         obstacleManager.Init();
         obstacleManager.Generate(obstacleManager.GetObstacleNum());
         uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
-        uIManager.SetState(UIManager.State.MAINGAME);
+        uIManager.SetState(UIManager.State.DODGEMAINGAME);
+    }
+
+    void UpStartbtnClick(PlayerData playerData, PlayerManager playerManager, UIManager uIManager)
+    {
+        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
+        Utility.Invisible(gameObject);
+        gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "UIRoot(Clone)", "MaingameCanvas");
+        Utility.Visible(gameObject);
+        uIManager.SetHeartActive(0, 10);
+        gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "NoneUIGameObject", "Maingame(Clone)");
+        Utility.Visible(gameObject);
+        playerManager.Init(playerData.speed);
+        playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.UP);
+        uIManager.SetState(UIManager.State.UPMAINGAME);        
+        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "Main Camera");        
+        gameObject.GetComponent<Transform>().SetParent(Utility.FindVisibleGameobjectWithName(gameObject, "Character(Clone)").transform);
     }
 
     void RestartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
@@ -46,7 +67,7 @@ public class ButtonManager
         lifeManager.ResetLife(playerData.life);
         uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
         uIManager.GetMaingameUI().ResetScore();
-        uIManager.SetState(UIManager.State.MAINGAME);
+        uIManager.SetState(UIManager.State.DODGEMAINGAME);
     }
 
     void QuitbtnClick()
