@@ -6,6 +6,8 @@ public class MySceneManager
     MyPlayerController m_playerController;
     MyEnermyGenerator m_enermyGenerator;
     MyColliderManager m_colliderManager;
+    MyCamera m_camera;
+    float m_deltaTime;
 
     public void Init()
     {
@@ -21,12 +23,16 @@ public class MySceneManager
         m_colliderManager = new MyColliderManager();
         m_colliderManager.Init(m_playerController);
 
+        m_camera = new MyCamera();
+        m_camera.Init();
+
         m_UIManager.clearUI.SetActive(false);
         m_UIManager.deadUI.SetActive(false);
     }
 
     public void Update()
     {
+        m_camera.Update();
         if (m_UIManager.isStart == true)
         {
             Debug.Log("¿ÁΩ√¿€!");
@@ -49,9 +55,10 @@ public class MySceneManager
             m_UIManager.clearUI.SetActive(true);
         }
 
+        m_deltaTime = Time.deltaTime;
 
         m_playerController.Update();
-        m_enermyGenerator.SpawnEnermy();
+        //m_enermyGenerator.Update(m_deltaTime);
         m_colliderManager.Update();
         m_UIManager.SetScoreText(m_playerController.GetScore());
     }

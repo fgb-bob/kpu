@@ -6,10 +6,12 @@ public class MyShare
         public static class Prefab
         {
             public static readonly string Root = "Prefabs/UIRoot";
+            public static readonly string Background = "Prefabs/Background";
+            public static readonly string Map = "Prefabs/Map";
             public static readonly string Title = "Prefabs/TitleUI";
             public static readonly string Dead = "Prefabs/DeadUI";
             public static readonly string Clear = "Prefabs/ClearUI";
-            public static readonly string Background = "Prefabs/Background";
+            public static readonly string Button = "Prefabs/ButtonUI";
             public static string Player = "Prefabs/Player";
             public static string Enermy = "Prefabs/Enermy";
         }

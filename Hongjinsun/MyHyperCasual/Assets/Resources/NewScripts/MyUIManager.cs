@@ -8,6 +8,8 @@ public class MyUIManager
     public GameObject deadUI;
     public GameObject clearUI;
     public GameObject background;
+    public GameObject map;
+    public GameObject buttonUI;
     Text m_scoreText;
     MyButtonManager m_myButtonManager;
     MyEnermyGenerator m_myEnermyGenerator;
@@ -16,10 +18,12 @@ public class MyUIManager
     public void Init(MyPlayerController playerController, MyEnermyGenerator m_myEnermyGenerator)
     {
         uiRoot = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Root, UIRoot.canvas);
+        background = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Background, GameObject.Find("Main Camera").transform);
+        map = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Map, null);
+        buttonUI = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Button, UIRoot.canvas);
         titleUI = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Title, UIRoot.canvas);
         deadUI = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Dead, UIRoot.canvas);
         clearUI = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Clear, UIRoot.canvas);
-        background = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.Background, null);
 
         m_scoreText = GameObject.Find("Score").GetComponent<Text>();
 
@@ -46,6 +50,7 @@ public class MyUIManager
         deadUI.SetActive(false);
         clearUI.SetActive(false);
         isStart = true;
+        
     }
 
     public void QuitGame()

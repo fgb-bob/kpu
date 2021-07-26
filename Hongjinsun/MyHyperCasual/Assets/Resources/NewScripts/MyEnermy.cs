@@ -15,7 +15,7 @@ public class MyEnermy
         SetPhysics();
         isMove = false;
 
-        speed = Random.Range(0.01f, 0.15f);
+        speed = Random.Range(3.0f, 10.0f);
     }
 
     public void SetPhysics()
