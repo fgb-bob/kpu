@@ -12,7 +12,7 @@ public class MyEnermyController
         this.enermies = enermies;
     }
 
-    public void Move()
+    public void Move(float deltaTime)
     {
         for (int i = 0; i < enermies.Count; ++i)
         {
@@ -23,7 +23,7 @@ public class MyEnermyController
 
                 if (enermies[i].isMove == true)
                 {
-                    enermies[i].rigid.transform.position = Vector2.MoveTowards(enermies[i].obj.transform.position, new Vector2(0, -2.8f), enermies[i].speed);
+                    enermies[i].rigid.transform.position = Vector2.MoveTowards(enermies[i].obj.transform.position, new Vector2(0, -2.8f), enermies[i].speed * deltaTime);
                 }
             }
         }

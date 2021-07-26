@@ -44,13 +44,8 @@ public class MyEnermyGenerator
         Debug.Log(maxEnermy + "付府 利 积己");
     }
 
-    public void SpawnEnermy()
+    public void CheckSpawn()
     {
-        if (enermies.Count > 0)
-        {
-            enermyController.Move();
-        }
-
         if (this.enermyGen == true)
         {
             m_spawnTime = Random.Range(0.5f, 2.0f);
@@ -77,7 +72,7 @@ public class MyEnermyGenerator
 
                 m_delta = 0f;
                 if (m_spawnTime - m_spawnSpeed > 0)
-                    m_spawnSpeed += 0.0005f;
+                    m_spawnSpeed += 0.00005f;
 
             }
             if (cntEnermy == maxEnermy)
@@ -85,6 +80,16 @@ public class MyEnermyGenerator
                 this.enermyGen = false;
             }
         }
+    }
+
+    public void Update(float deltaTime)
+    {
+        if (enermies.Count > 0)
+        {
+            enermyController.Move(deltaTime);
+        }
+
+        CheckSpawn();
     }
 
     public int GetCntEnermy()

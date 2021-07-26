@@ -17,13 +17,14 @@ public class MyControlButton
 
     void RightBTN(MyPlayerController playerController)
     {
-        if ( playerController.player.rigid.velocity == Vector2.zero )
-            playerController.MoveToRight();
+
+        //if (playerController.player.rigid.velocity == Vector2.zero)
+        //    playerController.MoveToRight();
     }
 
     void LeftBTN(MyPlayerController playerController)
     {
-        if (playerController.player.rigid.velocity == Vector2.zero)
-            playerController.MoveToLeft();
+        //if (playerController.player.rigid.velocity == Vector2.zero)
+        //    playerController.MoveToLeft();
     }
 }
