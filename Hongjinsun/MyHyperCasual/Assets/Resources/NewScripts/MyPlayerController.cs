@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MyPlayerController : IMyListener
+public class MyPlayerController : MyEventTrigger
 {
     public MyPlayer player;
     int m_score;
@@ -9,6 +9,8 @@ public class MyPlayerController : IMyListener
     public bool isAttack;
 
     MyEventTrigger myEvent;
+    EventArgs eventArgs;
+
     public void Init()
     {
         m_score = 0;
@@ -18,7 +20,13 @@ public class MyPlayerController : IMyListener
         isAttack = false;
 
         myEvent = new MyEventTrigger();
-        myEvent.MyEvent += c_MyEvent;
+        myEvent.Clicked += new EventHandler(button_Clicked);
+    }
+
+    private void button_Clicked(object sender, EventArgs e)
+    {
+        Debug.Log("오른쪽 버튼 클릭");
+        //throw new NotImplementedException();
     }
 
     public void c_MyEvent(object sender, MyEventTrigger.MyEventArgs args)
@@ -58,19 +66,26 @@ public class MyPlayerController : IMyListener
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && player.rigid.velocity == Vector2.zero)
         {
-            OnEvent(EventType.KeyDown, "RightArrow");
+            eventArgs = new EventArgs();
+
+            
+            OnClicked(eventArgs);
+
+            //OnEvent(EventType.KeyDown, "RightArrow");
 
         }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            OnEvent(EventType.KeyDown, "AddScore");
+            //OnEvent(EventType.KeyDown, "AddScore");
         }
     }
-    void print()
+
+    public override void OnClicked(EventArgs e)
     {
-        Debug.Log("시발");
+        base.OnClicked(e);
     }
+
 
     void Move()
     {
@@ -79,38 +94,39 @@ public class MyPlayerController : IMyListener
         float deltaTime = Time.deltaTime;
     }
 
+
     void Defence()
     {
         
     }
 
-    //public void MoveToRight() 
+    //public void MoveToRight()
     //{
     //    player.obj.transform.localScale = new Vector2(1, 1);
     //    player.box.enabled = true;
     //    player.rigid.AddForce(player.velocity, ForceMode2D.Impulse);
     //}
 
-    //public void MoveToLeft() 
+    //public void MoveToLeft()
     //{
     //    player.obj.transform.localScale = new Vector2(-1, 1);
     //    player.box.enabled = true;
     //    player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
     //}
 
-    //void ReturnToCenter(string s)
-    //{
-    //    player.rigid.velocity = Vector2.zero;
-    //    switch (s)
-    //    {
-    //        case "fromRight":
-    //            player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
-    //            break;
-    //        case "fromLeft":
-    //            player.rigid.AddForce(player.velocity, ForceMode2D.Impulse);
-    //            break;
-    //    }
-    //}
+    void ReturnToCenter(string s)
+    {
+        player.rigid.velocity = Vector2.zero;
+        switch (s)
+        {
+            case "fromRight":
+                player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
+                break;
+            case "fromLeft":
+                player.rigid.AddForce(player.velocity, ForceMode2D.Impulse);
+                break;
+        }
+    }
 
     public void SetScore(int n)
     {
@@ -122,20 +138,20 @@ public class MyPlayerController : IMyListener
         return m_score;
     }
 
-    public void OnEvent(EventType eventType, string eventParameter)
-    {
-        Debug.Log("OnEvent 호출");
-        switch (eventParameter) {
-            case "RightArrow":
-                myEvent.Move();
-                player.obj.transform.Translate(1, 0, 0);
-                break;
-            case "AddScore":
-                ++m_score;
-                myEvent.AddScore(m_score);
-                break;
-            default:
-                throw new NotImplementedException();
-        }
-    }
+    //public void OnEvent(EventType eventType, string eventParameter)
+    //{
+    //    Debug.Log("OnEvent 호출");
+    //    switch (eventParameter) {
+    //        case "RightArrow":
+    //            //myEvent.Move();
+    //            player.obj.transform.Translate(1, 0, 0);
+    //            break;
+    //        case "AddScore":
+    //            ++m_score;
+    //            //myEvent.AddScore(m_score);
+    //            break;
+    //        default:
+    //            throw new NotImplementedException();
+    //    }
+    //}
 }
