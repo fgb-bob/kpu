@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public delegate void EventHandler(object sender, EventArgs e);
+public delegate void MyEventHandler(object sender, EventArgs e);
 public class MyEventTrigger : IMyEventTrigger
 {
     List<IMyListener> listeners;
@@ -23,28 +23,16 @@ public class MyEventTrigger : IMyEventTrigger
             default:
                 throw new System.NotImplementedException();
         }
-
     }
 
-    public class MyEventArgs : EventArgs
+    public event MyEventHandler Clicked;
+
+    public void OnClicked()
     {
-        public string Name { get; set; }
-        public int Cnt { get; set; }
-        public IMyListener Listener { get; set; }
-
-    }
-
-
-
-    public event EventHandler Clicked;
-
-    public virtual void OnClicked(EventArgs e)
-    {
-        Debug.Log("OnClicked");
         if (Clicked != null)
-            Clicked(this, e);
+            Clicked(this, EventArgs.Empty);
         else
-            Debug.Log("Clicked°¡ ¾øÁ´");
+            Debug.Log("Clicked == null");
     }
 
     //public delegate void MyEventHandler(string message);

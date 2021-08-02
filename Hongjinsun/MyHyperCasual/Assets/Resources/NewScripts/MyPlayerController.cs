@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class MyPlayerController : MyEventTrigger
+public class MyPlayerController
 {
     public MyPlayer player;
     int m_score;
@@ -9,7 +9,6 @@ public class MyPlayerController : MyEventTrigger
     public bool isAttack;
 
     MyEventTrigger myEvent;
-    EventArgs eventArgs;
 
     public void Init()
     {
@@ -20,19 +19,15 @@ public class MyPlayerController : MyEventTrigger
         isAttack = false;
 
         myEvent = new MyEventTrigger();
-        myEvent.Clicked += new EventHandler(button_Clicked);
     }
 
     private void button_Clicked(object sender, EventArgs e)
     {
         Debug.Log("오른쪽 버튼 클릭");
+        player.obj.transform.Translate(1, 0, 0);
         //throw new NotImplementedException();
     }
 
-    public void c_MyEvent(object sender, MyEventTrigger.MyEventArgs args)
-    {
-        Debug.Log("c_MyEvent - " + sender + ", " + args);
-    }
     public void Update()
     {
 
@@ -63,27 +58,19 @@ public class MyPlayerController : MyEventTrigger
         //else if (Input.GetKeyDown(KeyCode.LeftArrow) && player.rigid.velocity == Vector2.zero)
         //    MoveToLeft();
 
-
+        Debug.Log("playercontroller의 Update호출");
         if (Input.GetKeyDown(KeyCode.RightArrow) && player.rigid.velocity == Vector2.zero)
         {
-            eventArgs = new EventArgs();
-
-            
-            OnClicked(eventArgs);
-
-            //OnEvent(EventType.KeyDown, "RightArrow");
+            myEvent.Clicked += new MyEventHandler(button_Clicked);
+            myEvent.OnClicked();
+            myEvent.Clicked -= new MyEventHandler(button_Clicked);
 
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            //OnEvent(EventType.KeyDown, "AddScore");
-        }
-    }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
 
-    public override void OnClicked(EventArgs e)
-    {
-        base.OnClicked(e);
+        //}
     }
 
 
@@ -114,19 +101,19 @@ public class MyPlayerController : MyEventTrigger
     //    player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
     //}
 
-    void ReturnToCenter(string s)
-    {
-        player.rigid.velocity = Vector2.zero;
-        switch (s)
-        {
-            case "fromRight":
-                player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
-                break;
-            case "fromLeft":
-                player.rigid.AddForce(player.velocity, ForceMode2D.Impulse);
-                break;
-        }
-    }
+    //void ReturnToCenter(string s)
+    //{
+    //    player.rigid.velocity = Vector2.zero;
+    //    switch (s)
+    //    {
+    //        case "fromRight":
+    //            player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
+    //            break;
+    //        case "fromLeft":
+    //            player.rigid.AddForce(player.velocity, ForceMode2D.Impulse);
+    //            break;
+    //    }
+    //}
 
     public void SetScore(int n)
     {
