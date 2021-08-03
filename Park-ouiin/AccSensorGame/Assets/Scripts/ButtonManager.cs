@@ -34,6 +34,7 @@ public class ButtonManager
         Utility.Visible(gameObject);        
         playerManager.Init(playerData.speed);
         playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.DODGE);
+        playerManager.GetPlayer().GetPlayerController().SetGravity(0);
         obstacleManager.Init();
         obstacleManager.Generate(obstacleManager.GetObstacleNum());
         uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
@@ -48,11 +49,12 @@ public class ButtonManager
         Utility.Visible(gameObject);
         uIManager.SetHeartActive(0, 10);
         gameObject = Utility.FindInvisibleGameobjectWithName(gameObject, "NoneUIGameObject", "Maingame(Clone)");
-        Utility.Visible(gameObject);
+        Utility.Visible(gameObject);        
+        uIManager.SetState(UIManager.State.UPMAINGAME);
         playerManager.Init(playerData.speed);
         playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.UP);
-        uIManager.SetState(UIManager.State.UPMAINGAME);        
-        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "Main Camera");        
+        playerManager.GetPlayer().GetPlayerController().SetGravity(1);        
+        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "Main Camera");
         gameObject.GetComponent<Transform>().SetParent(Utility.FindVisibleGameobjectWithName(gameObject, "Character(Clone)").transform);
     }
 
