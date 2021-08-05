@@ -5,11 +5,12 @@ public class TitleUI
 {
     GameObject titleImage;
     GameObject gameObject;
-    GameObject startbtn;
+    GameObject dodgeStartbtn, upStartbtn;
 
     public void Init()
     {
         titleImage = Share.Util.InstantiatePrefab(Share.Path.Prefab.Title, UIRoot.titleCanvas);
-        startbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.Startbtn, UIRoot.titleCanvas);
+        dodgeStartbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.DodgeStartbtn, UIRoot.titleCanvas);
+        upStartbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.UpStartbtn, UIRoot.titleCanvas);
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager
 {
-    public enum State { TITLE, MAINGAME, RESULT };
+    public enum State { TITLE, DODGEMAINGAME, UPMAINGAME, RESULT };
 
     State state = State.TITLE;
 

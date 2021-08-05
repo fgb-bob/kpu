@@ -31,7 +31,5 @@ public class MyShare
         {
             return GameObject.Instantiate(Bundle.LoadAsset<GameObject>(path), parent);
         }
-
-
     }
 }

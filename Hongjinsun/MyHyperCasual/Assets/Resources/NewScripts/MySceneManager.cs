@@ -21,7 +21,7 @@ public class MySceneManager
         m_UIManager.Init(m_playerController, m_enermyGenerator);
 
         m_colliderManager = new MyColliderManager();
-        m_colliderManager.Init(m_playerController);
+        m_colliderManager.Init(m_playerController, m_enermyGenerator);
 
         m_camera = new MyCamera();
         m_camera.Init();
@@ -58,7 +58,7 @@ public class MySceneManager
         m_deltaTime = Time.deltaTime;
 
         m_playerController.Update();
-        //m_enermyGenerator.Update(m_deltaTime);
+        m_enermyGenerator.Update(m_deltaTime);
         m_colliderManager.Update();
         m_UIManager.SetScoreText(m_playerController.GetScore());
     }

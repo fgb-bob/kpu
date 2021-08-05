@@ -64,8 +64,10 @@
     <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\Scripts\Share.cs" />
     <Compile Include="Assets\Scripts\ResultUI.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Resources\ScriptableObject\ObstacleData.cs" />
     <Compile Include="Assets\Scripts\JudgeManager.cs" />
+    <Compile Include="Assets\Scripts\ButtonManager.cs" />
     <Compile Include="Assets\Scripts\TitleUI.cs" />
     <Compile Include="Assets\Scripts\UIRoot.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
@@ -75,7 +77,6 @@
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Resources\ScriptableObject\ObstacleSpawnData.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\ButtonManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

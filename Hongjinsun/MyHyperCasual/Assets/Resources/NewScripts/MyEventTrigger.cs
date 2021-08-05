@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void MyEventHandler(object sender, EventArgs e);
 public class MyEventTrigger : IMyEventTrigger
 {
     List<IMyListener> listeners;
@@ -22,51 +23,57 @@ public class MyEventTrigger : IMyEventTrigger
             default:
                 throw new System.NotImplementedException();
         }
-
     }
 
-    public class MyEventArgs : EventArgs
-    {
-        public string Name { get; set; }
-        public int Cnt { get; set; }
-        public IMyListener Listener { get; set; }
+    public event MyEventHandler Clicked;
 
+    public void OnClicked()
+    {
+        if (Clicked != null)
+            Clicked(this, EventArgs.Empty);
+        else
+            Debug.Log("Clicked == null");
     }
 
     //public delegate void MyEventHandler(string message);
     //public delegate void MyEventHandler();
     //public static event MyEventHandler MyEvent;
 
-    public event EventHandler<MyEventArgs> MyEvent;
-    public void Move()
-    {
-        MyEventArgs args = new MyEventArgs();
-        args.Name = "Move";
-        args.Cnt = 1;
-        Debug.Log(args.Listener);
-        listeners.Add(args.Listener);
-        OnEventTrigger(args);
-        Debug.Log(args.Name + "함수 호출");
-    }
-    public void AddScore(int n)
-    {
-        MyEventArgs args = new MyEventArgs();
-        args.Name = "AddScore";
-        args.Cnt = n;
-        OnEventTrigger(args);
-        Debug.Log(args.Name + "함수 호출 - Cnt : " + args.Cnt);
-    }
-    protected virtual void OnEventTrigger(MyEventArgs myEventArgs)
-    {
-        MyEvent?.Invoke(this, myEventArgs);
-        /*  아래 코드가 한문장으로 ->  MyEvent?.Invoke(this, myEventArgs);
-        EventHandler<MyEventArgs> handler = MyEvent;
-        if (handler != null)
-        {
-            handler(this, myEventArgs);
-        }
-        */
-    }
+    //public event EventHandler<MyEventArgs> MyEvent;
+    //public void Move()
+    //{
+    //    MyEventArgs args = new MyEventArgs();
+    //    args.Name = "Move";
+    //    args.Cnt = 1;
+    //    Debug.Log(args.Listener);
+    //    listeners.Add(args.Listener);
+    //    OnEventTrigger(args);
+    //    Debug.Log(args.Name + "함수 호출");
+    //}
+    //public void AddScore(int n)
+    //{
+    //    MyEventArgs args = new MyEventArgs();
+    //    args.Name = "AddScore";
+    //    args.Cnt = n;
+    //    OnEventTrigger(args);
+    //    Debug.Log(args.Name + "함수 호출 - Cnt : " + args.Cnt);
+    //}
+
+
+    //protected virtual void OnEventTrigger(MyEventArgs myEventArgs)
+    //{
+    //    MyEvent?.Invoke(this, myEventArgs);
+    //    /*  아래 코드가 한문장으로 ->  MyEvent?.Invoke(this, myEventArgs);
+    //    EventHandler<MyEventArgs> handler = MyEvent;
+    //    if (handler != null)
+    //    {
+    //        handler(this, myEventArgs);
+    //    }
+    //    */
+    //}
+
+
+
     //public static void Do(bool key)
     //{
     //    if (key == true)

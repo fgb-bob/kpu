@@ -16,19 +16,15 @@ public class MyEnermyGenerator
 
     public void Init()
     {
-        enermies = new List<MyEnermy>();
         enermyController = new MyEnermyController();
+        ResetData();
         enermyGen = false;
-        m_delta = 0;
-        m_spawnSpeed = 0;
-        spawnInt = 0;
-        cntEnermy = 0;
-        SetMaxEnermy();
     }
 
     public void ResetData()
     {
-        enermies.Clear();
+        if ( enermies != null)
+            enermies.Clear();
         enermies = new List<MyEnermy>();
         enermyGen = true;
         m_delta = 0;

@@ -4,13 +4,16 @@ public class MyColliderManager
 {
     MyPlayerController m_playerController;
     MyPlayer m_player;
+    MyEnermyGenerator m_enermyGenerator;
     GameObject[] m_enermies;
     public bool isDead;
 
-    public void Init(MyPlayerController playerController)
+    public void Init(MyPlayerController playerController, MyEnermyGenerator enermyGenerator)
     {
         m_playerController = playerController;
         m_player = playerController.player;
+        m_enermyGenerator = enermyGenerator;
+
     }
 
     public void Update()

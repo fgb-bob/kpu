@@ -20,6 +20,11 @@ public class PlayerManager
         return player.GetPlayerGameObject();
     }
 
+    public Player GetPlayer()
+    {
+        return player;
+    }
+
     public void Reset()
     {
         player.GetPlayerGameObject().GetComponent<Transform>().position = new Vector3(0f, 0f, 0f);

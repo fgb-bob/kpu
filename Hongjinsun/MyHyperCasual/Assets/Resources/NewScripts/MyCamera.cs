@@ -14,6 +14,8 @@ public class MyCamera
 
     public void Update()
     {
-        camera.transform.position = new Vector3(player.transform.position.x, 0, -2);
+        //camera.transform.position = new Vector3(player.transform.position.x, 0, -2);
+        camera.transform.position = new Vector3(0, 0, -2);
+
     }
 }

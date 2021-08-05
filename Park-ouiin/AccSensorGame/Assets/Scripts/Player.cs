@@ -17,6 +17,11 @@ public class Player
         playerController.Move();
     }
 
+    public PlayerController GetPlayerController()
+    {
+        return playerController;
+    }
+
     public GameObject GetPlayerGameObject()
     {
         return goPlayer;
