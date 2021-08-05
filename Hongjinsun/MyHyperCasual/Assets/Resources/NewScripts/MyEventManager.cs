@@ -72,6 +72,7 @@ public class MyEventManager : MonoBehaviour
 	/// <param name="Param">Optional argument</param>
 	public void PostNotification(EVENT_TYPE Event_Type, GameObject Sender, object Param = null)
 	{
+		Debug.Log("이건 되냐?");
 		//Notify all listeners of an event
 
 		//List of listeners for this event only

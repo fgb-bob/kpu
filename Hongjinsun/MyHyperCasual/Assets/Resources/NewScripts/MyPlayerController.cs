@@ -20,7 +20,11 @@ public class MyPlayerController : IMyListener
 
         myEvent = new MyEventTrigger();
 
-        MyEventManager.Instance.AddListener(EVENT_TYPE.SCORE_INCREASE, this);
+        try {
+            MyEventManager.Instance.AddListener(EVENT_TYPE.SCORE_INCREASE, this);
+        } catch(NullReferenceException) {
+            Debug.Log("¾ÈµÅ!!");
+        }
     }
 
     private void button_Clicked(object sender, EventArgs e)
@@ -70,6 +74,7 @@ public class MyPlayerController : IMyListener
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("Á¡¼ö + 1");
             Score += 1;
         }
     }
@@ -132,8 +137,7 @@ public class MyPlayerController : IMyListener
         set
         {
             m_score = Mathf.Clamp(value, 0, 100);
-
-            MyEventManager.Instance.PostNotification(EVENT_TYPE.SCORE_INCREASE, this.player.obj, m_score);
+            MyEventManager.Instance.PostNotification(EVENT_TYPE.SCORE_INCREASE, player.obj, m_score);
         }
     }
 
