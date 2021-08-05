@@ -13,6 +13,8 @@ public class MySceneManager
     {
         m_playerController = new MyPlayerController();
         m_playerController.Init();
+        Debug.Log("으아아아");
+        MyEventManager.Instance.AddListener(EVENT_TYPE.SCORE_INCREASE, m_playerController);
 
         m_enermyGenerator = new MyEnermyGenerator();
         m_enermyGenerator.Init();

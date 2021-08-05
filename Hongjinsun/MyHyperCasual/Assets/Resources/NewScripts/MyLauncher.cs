@@ -9,6 +9,7 @@ public class MyLauncher : MonoBehaviour
         m_mySceneManager.Init();
 
     }
+
     private void Update()
     {
         m_mySceneManager.Update();
