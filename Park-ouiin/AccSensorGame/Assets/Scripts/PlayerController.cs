@@ -15,12 +15,12 @@ public class PlayerController
 
     float lifetime;
 
-    public float GetLife()
+    public float GetLifetime()
     {
         return lifetime;
     }
 
-    public void SetLife(float lifetime)
+    public void SetLifetime(float lifetime)
     {
         this.lifetime = lifetime;
     }
@@ -42,7 +42,7 @@ public class PlayerController
         animator = playerGameObject.GetComponent<Animator>();
         rig = playerGameObject.GetComponent<Rigidbody2D>();
         this.speed = speed;
-        lifetime = 5;
+        lifetime = 3;
     }
 
     // 플레이어가 어디를 바라보는 지 확인 함수
@@ -67,7 +67,7 @@ public class PlayerController
                 dir.Normalize();
             dir *= Time.deltaTime;            
             rig.velocity = new Vector2(dir.x * speed, dir.y * speed);
-            Utility.NoScreenRangeOut(playerGameObject);
+            Utility.Judge.NoScreenRangeOut(playerGameObject);
         }
         else
         {
@@ -75,13 +75,12 @@ public class PlayerController
             temp = GameObject.FindGameObjectsWithTag("Scaffolding");
             for (int i = 0; i < temp.Length; ++i)
             {
-                if (Utility.Touching(playerGameObject.GetComponent<Collider2D>(), temp[i].GetComponent<Collider2D>()))
+                if (Utility.Judge.Touching(playerGameObject.GetComponent<Collider2D>(), temp[i].GetComponent<Collider2D>()))
                 {
-                    lifetime = 5;
+                    lifetime = 3;
                     rig.AddForce(Vector2.up * Time.deltaTime * 800, ForceMode2D.Impulse);                    
-                    Vector3 tt = new Vector3();
-                    tt = temp[i].GetComponent<Transform>().position;
-                    tt.y += 5;
+                    Vector3 tt = temp[i].GetComponent<Transform>().position;
+                    tt.y += Random.Range(5, 8);
                     tt.x = Random.Range(-7, 8);
                     temp[i].GetComponent<Transform>().position = tt;                    
                     break;
@@ -89,11 +88,14 @@ public class PlayerController
             }
             if (playerGameObject.GetComponent<Transform>().position.y >= 0)
             {
-                gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "Main Camera");
+                gameObject = Utility.Object.FindVisibleGameobjectWithName(gameObject, "Main Camera");
                 Vector3 ttt = new Vector3(0, playerGameObject.GetComponent<Transform>().position.y, -10);
                 gameObject.GetComponent<Transform>().position = ttt;
+                gameObject = Utility.Object.FindInvisibleGameobjectWithName(gameObject, "NoneUIGameObject", "Maingame(Clone)");
+                ttt = new Vector3(0, playerGameObject.GetComponent<Transform>().position.y, 0);
+                gameObject.GetComponent<Transform>().position = ttt;
             }
-            Utility.NoScreenRangeOut2(playerGameObject);
+            Utility.Judge.NoScreenRangeOut2(playerGameObject);
         }
     }
 }
