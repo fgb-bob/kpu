@@ -36,8 +36,8 @@ public class MyEnermyGenerator
 
     public void SetMaxEnermy()
     {
-        maxEnermy = 1;
-       // maxEnermy = Random.Range(20, 50);
+       // maxEnermy = 1;
+       maxEnermy = Random.Range(20, 50);
         Debug.Log(maxEnermy + "付府 利 积己");
     }
 

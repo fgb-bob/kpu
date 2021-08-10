@@ -70,8 +70,9 @@ public class MyColliderManager
                 Debug.Log("¹æ¾î");
                 for (int j = 0; j < m_enermies.Length; ++j)
                 {
-                    m_enermies[j].transform.Translate( new Vector2(m_enermies[i].transform.position.x + 1, 0));
+                    m_enermies[j].transform.position = new Vector2(m_enermies[j].transform.position.x + 1, m_enermies[j].transform.position.y) ;
                 }
+                m_player.rigid.AddForce(new Vector2(-5,0), ForceMode2D.Impulse);
             }
         }
      }
