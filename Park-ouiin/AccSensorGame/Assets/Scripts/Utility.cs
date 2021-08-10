@@ -50,6 +50,15 @@ public static class Utility
         gameObject.transform.position = Camera.main.ViewportToWorldPoint(worldpos);
     }
 
+    public static void NoScreenRangeOut2(GameObject gameObject)
+    {
+        Vector3 worldpos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
+        if (worldpos.x < 0f) worldpos.x = 0f;
+        if (worldpos.x > 1f) worldpos.x = 1f;
+
+        gameObject.transform.position = Camera.main.ViewportToWorldPoint(worldpos);
+    }
+
     public static bool Touching(Collider2D colA, Collider2D colB)
     {
         return colA.IsTouching(colB);

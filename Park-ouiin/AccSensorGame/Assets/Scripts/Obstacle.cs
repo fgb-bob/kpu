@@ -73,6 +73,23 @@ public class Obstacle
         goObstacle.transform.position = pos;
     }
 
+    public void SetPosDir2(float y)
+    {
+        pos = goObstacle.transform.position;
+        switch (Random.Range(1, 3))
+        {
+            case 1:
+                pos = RandomVector2(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, y + 3, y + 5);
+                dir.x = -pos.x;
+                break;
+            case 2:
+                pos = RandomVector2(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, y + 3, y + 5);
+                dir.x = -pos.x;
+                break;
+        }
+        goObstacle.transform.position = pos;
+    }
+
     Vector2 RandomVector2(float max_pos_x, float min_pos_x, float max_pos_y, float min_pos_y)
     {
         Vector2 vector;
