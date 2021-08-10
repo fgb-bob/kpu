@@ -48,19 +48,19 @@ public class MySceneManager
             m_colliderManager.isDead = false;
         }
 
-        if (m_playerController.GetScore() == m_enermyGenerator.GetMaxEnermy())
-        {
-            Debug.Log("葛电 利 贸瘤!!");
-            Time.timeScale = 0;
-            m_UIManager.clearUI.SetActive(true);
-        }
+        //if (m_playerController.GetScore() == m_enermyGenerator.GetMaxEnermy())
+        //{
+        //    Debug.Log("葛电 利 贸瘤!!");
+        //    Time.timeScale = 0;
+        //    m_UIManager.clearUI.SetActive(true);
+        //}
 
         m_deltaTime = Time.deltaTime;
 
         m_playerController.Update();
         m_enermyGenerator.Update(m_deltaTime);
         m_colliderManager.Update();
-        m_UIManager.SetScoreText(m_playerController.GetScore());
+        m_UIManager.SetScoreText(m_playerController.Score);
     }
 
     public void PlayGame()
@@ -68,7 +68,7 @@ public class MySceneManager
         m_playerController.player.ResetData();
         m_enermyGenerator.ResetData();
         m_colliderManager.ResetData();
-        m_playerController.SetScore(0);
+        m_playerController.Score = 0;
 
         Time.timeScale = 1;
         Time.fixedDeltaTime = 0.02f * Time.timeScale;

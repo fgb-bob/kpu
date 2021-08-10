@@ -1,11 +1,13 @@
 using UnityEngine;
+using System;
 
-public class MyColliderManager 
+public class MyColliderManager
 {
     MyPlayerController m_playerController;
     MyPlayer m_player;
     MyEnermyGenerator m_enermyGenerator;
     GameObject[] m_enermies;
+    BoxCollider2D m_SideStop;
     public bool isDead;
 
     public void Init(MyPlayerController playerController, MyEnermyGenerator enermyGenerator)
@@ -14,6 +16,8 @@ public class MyColliderManager
         m_player = playerController.player;
         m_enermyGenerator = enermyGenerator;
 
+        MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.StopSide, null);
+        m_SideStop = GameObject.Find("StopSide").GetComponent<BoxCollider2D>();
     }
 
     public void Update()
@@ -22,11 +26,13 @@ public class MyColliderManager
 
         if (m_enermies.Length > 0)
             Attack();
+
+        SideCollide();
     }
 
     public void ResetData()
     {
-        for (int i = 0; i < m_enermies.Length;++i)
+        for (int i = 0; i < m_enermies.Length; ++i)
         {
             GameObject.Destroy(m_enermies[i]);
         }
@@ -36,18 +42,29 @@ public class MyColliderManager
     {
         for (int i = 0; i < m_enermies.Length; ++i)
         {
-            if (m_player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>())) 
-            { 
+            if (m_player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
+            {
                 GameObject.Destroy(m_enermies[i]);
                 m_playerController.isAttack = true;
-                m_playerController.SetScore(m_playerController.GetScore() + 1);
+                m_playerController.Score += 1;
             }
 
             if (m_player.capsule.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
             {
-                isDead = true;
-                ResetData();
+                //isDead = true;
+                //ResetData();
+                m_playerController.isReturn = true;
+                m_playerController.isMove = false;
             }
+        }
+    }
+
+    void SideCollide()
+    {
+        if (m_player.rigid.IsTouching(m_SideStop) && m_playerController.isMove == false)
+        {
+            m_player.rigid.velocity = Vector2.zero;
+            m_playerController.isMove = true;
         }
     }
 }
