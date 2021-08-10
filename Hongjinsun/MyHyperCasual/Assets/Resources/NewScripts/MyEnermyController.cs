@@ -23,7 +23,7 @@ public class MyEnermyController
 
                 if (enermies[i].isMove == true)
                 {
-                    enermies[i].rigid.transform.position = Vector2.MoveTowards(enermies[i].obj.transform.position, new Vector2(0, -2.8f), enermies[i].speed * deltaTime);
+                    enermies[i].rigid.transform.position = Vector2.MoveTowards(enermies[i].obj.transform.position, new Vector2(-6.5f, 0), enermies[i].speed * deltaTime);
                 }
             }
         }

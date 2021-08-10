@@ -10,6 +10,8 @@ public class MyPlayerController
     public bool isReturn;
     public bool isMove;
     MyEventTrigger myEvent;
+    Animator m_attackAnim;
+
 
     public void Init()
     {
@@ -21,6 +23,8 @@ public class MyPlayerController
         isReturn = false;
         isMove = true;
         myEvent = new MyEventTrigger();
+
+        m_attackAnim = player.obj.GetComponent<Animator>();
     }
 
     public int Score
@@ -64,8 +68,32 @@ public class MyPlayerController
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && player.rigid.velocity == Vector2.zero)
             Move();
+
+        if (player.obj.transform.position.x >= 15)
+        {
+            isMove = false;
+            player.rigid.velocity = Vector2.zero;
+            player.rigid.AddForce(-player.velocity, ForceMode2D.Impulse);
+        }
+
         if (Input.GetKeyDown(KeyCode.C))
+        {
             Attack();
+        }
+
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Block(true);
+            //m_attackAnim.SetBool("block", true);
+            //player.box.enabled = true;
+        }
+        if (Input.GetKeyUp(KeyCode.X))
+        {
+            Block(false);
+            //m_attackAnim.SetBool("block", false);
+            //player.box.enabled = false;
+        }
+
 
         if (isReturn == true)
         {
@@ -84,11 +112,14 @@ public class MyPlayerController
     void Attack()
     {
         Debug.Log("АјАн!");
-        player.box.enabled = true;
+        m_attackAnim.SetTrigger("attack");
+        player.polygon.enabled = true;
     }
-    void Defence()
-    {
 
+    void Block(bool state)
+    {
+        m_attackAnim.SetBool("block", state);
+        player.box.enabled = state;
     }
 
     //public void OnEvent(EventType eventType, string eventParameter)

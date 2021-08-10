@@ -16,8 +16,7 @@ public class MyColliderManager
         m_player = playerController.player;
         m_enermyGenerator = enermyGenerator;
 
-        MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.StopSide, null);
-        m_SideStop = GameObject.Find("StopSide").GetComponent<BoxCollider2D>();
+        m_SideStop = MyShare.Util.InstantiatePrefab(MyShare.Path.Prefab.StopSide, null).GetComponent<BoxCollider2D>();
     }
 
     public void Update()
@@ -25,7 +24,10 @@ public class MyColliderManager
         m_enermies = GameObject.FindGameObjectsWithTag("enermy");
 
         if (m_enermies.Length > 0)
+        {
             Attack();
+            Block();
+        }
 
         SideCollide();
     }
@@ -42,7 +44,7 @@ public class MyColliderManager
     {
         for (int i = 0; i < m_enermies.Length; ++i)
         {
-            if (m_player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
+            if (m_player.polygon.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
             {
                 GameObject.Destroy(m_enermies[i]);
                 m_playerController.isAttack = true;
@@ -59,9 +61,24 @@ public class MyColliderManager
         }
     }
 
+    void Block()
+    {
+        for (int i = 0; i < m_enermies.Length; ++i)
+        {
+            if(m_player.box.IsTouching(m_enermies[i].GetComponent<CapsuleCollider2D>()))
+            {
+                Debug.Log("¹æ¾î");
+                for (int j = 0; j < m_enermies.Length; ++j)
+                {
+                    m_enermies[j].transform.Translate( new Vector2(m_enermies[i].transform.position.x + 1, 0));
+                }
+            }
+        }
+     }
+
     void SideCollide()
     {
-        if (m_player.rigid.IsTouching(m_SideStop) && m_playerController.isMove == false)
+        if (m_player.rigid.IsTouching(m_SideStop) && m_playerController.isMove == false)  
         {
             m_player.rigid.velocity = Vector2.zero;
             m_playerController.isMove = true;

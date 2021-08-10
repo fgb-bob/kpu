@@ -37,7 +37,7 @@ public class MyEnermyGenerator
     public void SetMaxEnermy()
     {
         maxEnermy = 1;
-        //maxEnermy = Random.Range(20, 50);
+       // maxEnermy = Random.Range(20, 50);
         Debug.Log(maxEnermy + "付府 利 积己");
     }
 
@@ -45,8 +45,8 @@ public class MyEnermyGenerator
     {
         if (this.enermyGen == true)
         {
-            m_spawnTime = Random.Range(0.5f, 2.0f);
-
+            //m_spawnTime = Random.Range(0.5f, 2.0f);
+            m_spawnTime = 0.05f;
             m_delta += Time.deltaTime;
 
             if (m_delta > m_spawnTime - m_spawnSpeed && cntEnermy < maxEnermy)
@@ -55,13 +55,13 @@ public class MyEnermyGenerator
                 enermy.Init();
                 enermy.isMove = true;
 
-                spawnInt = Random.Range(0, 2);
+                //spawnInt = Random.Range(0, 2);
 
                 //if (spawnInt == 0)
-                //    enermy.obj.transform.position = new Vector2(-10, -2.89f);
+                //    enermy.obj.transform.position = new Vector2(-10, 0);
                 //else
                 //
-                enermy.obj.transform.position = new Vector2(10, -2.89f);
+                enermy.obj.transform.position = new Vector2(10 + cntEnermy, 0);
 
                 enermies.Add(enermy);
                 enermyController.Init(enermies);
@@ -82,10 +82,10 @@ public class MyEnermyGenerator
 
     public void Update(float deltaTime)
     {
-        //if (enermies.Count > 0)
-        //{
-        //    enermyController.Move(deltaTime);
-        //}
+        if (enermies.Count > 0)
+        {
+            enermyController.Move(deltaTime);
+        }
 
         CheckSpawn();
     }

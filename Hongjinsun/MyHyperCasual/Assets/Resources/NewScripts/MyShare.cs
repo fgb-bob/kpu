@@ -14,7 +14,7 @@ public class MyShare
             public static readonly string Button = "Prefabs/ButtonUI";
             public static string Player = "Prefabs/Player";
             public static string Enermy = "Prefabs/Enermy";
-            public static readonly string StopSide = "Prefabs/CollisionObject";
+            public static readonly string StopSide = "Prefabs/StopSide";
         }
     }
 
