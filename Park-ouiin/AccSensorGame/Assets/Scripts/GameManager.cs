@@ -42,8 +42,8 @@ public class GameManager : MonoBehaviour
                 uiManager.SetScore();
                 // playerData.monsterDelay마다 장애물 1개 추가 생성
                 if (((int)uiManager.GetScore() / playerData.monsterDelay) == obstacleManager.GetObstacleNum())
-                    obstacleManager.Generate(obstacleManager.GetObstacleNum());
-                obstacleManager.Moving();
+                    obstacleManager.Generate(obstacleManager.GetObstacleNum(), uiManager);
+                obstacleManager.Moving(uiManager);
                 // 장애물과 플레이어 충돌 판단
                 judgeManager.judging(playerManager.GetGameObjectPlayer());
                 if (lifeManager.GetLife() <= 0)
@@ -56,7 +56,14 @@ public class GameManager : MonoBehaviour
                 break;
             case UIManager.State.UPMAINGAME:
                 playerManager.PlayerMoveUpdate();
-                uiManager.SetScore();                
+                uiManager.SetScore();
+                obstacleManager.Moving(uiManager);
+                if (playerManager.GetPlayer().GetPlayerController().GetLife() <= 0)
+                {
+                    Utility.Visible(uiManager.GetGameObjectResultUI());
+                    Utility.Pause();
+                    uiManager.SetState(UIManager.State.RESULT);
+                }
                 break;
             default:
                 //throw new System.NotImplementedException();

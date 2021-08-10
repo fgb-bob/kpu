@@ -9,7 +9,7 @@ public class ButtonManager
     {
         upStartbtn = Utility.FindInvisibleGameobjectWithName(upStartbtn, "UIRoot(Clone)", "TitleCanvas");
         upStartbtn = upStartbtn.transform.Find("UpStartbtn(Clone)").gameObject;
-        upStartbtn.GetComponent<Button>().onClick.AddListener(() => UpStartbtnClick(playerData, playerManager, uIManager));
+        upStartbtn.GetComponent<Button>().onClick.AddListener(() => UpStartbtnClick(playerData, playerManager, obstacleManager, uIManager));
 
         dodgeStartbtn = Utility.FindInvisibleGameobjectWithName(dodgeStartbtn, "UIRoot(Clone)", "TitleCanvas");
         dodgeStartbtn = dodgeStartbtn.transform.Find("DodgeStartbtn(Clone)").gameObject;
@@ -36,12 +36,12 @@ public class ButtonManager
         playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.DODGE);
         playerManager.GetPlayer().GetPlayerController().SetGravity(0);
         obstacleManager.Init();
-        obstacleManager.Generate(obstacleManager.GetObstacleNum());
+        obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);
         uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
         uIManager.SetState(UIManager.State.DODGEMAINGAME);
     }
 
-    void UpStartbtnClick(PlayerData playerData, PlayerManager playerManager, UIManager uIManager)
+    void UpStartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, UIManager uIManager)
     {
         gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
         Utility.Invisible(gameObject);
@@ -53,9 +53,10 @@ public class ButtonManager
         uIManager.SetState(UIManager.State.UPMAINGAME);
         playerManager.Init(playerData.speed);
         playerManager.GetPlayer().GetPlayerController().SetGameType(PlayerController.GameType.UP);
-        playerManager.GetPlayer().GetPlayerController().SetGravity(1);        
-        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "Main Camera");
-        gameObject.GetComponent<Transform>().SetParent(Utility.FindVisibleGameobjectWithName(gameObject, "Character(Clone)").transform);
+        playerManager.GetPlayer().GetPlayerController().SetGravity(1);
+        obstacleManager.Init();
+        obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);          
+        Share.Util.InstantiatePrefab(Share.Path.Prefab.Scaffolding, null);
     }
 
     void RestartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
@@ -65,11 +66,22 @@ public class ButtonManager
         Utility.Invisible(gameObject);
         playerManager.Reset();
         obstacleManager.ResetObstacleNum();
-        obstacleManager.Generate(obstacleManager.GetObstacleNum());
+        obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);
         lifeManager.ResetLife(playerData.life);
-        uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+        if (uIManager.GetState() == UIManager.State.DODGEMAINGAME)
+        {
+            uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());            
+            uIManager.SetState(UIManager.State.DODGEMAINGAME);
+        }
+        else 
+        {
+            playerManager.GetPlayer().GetPlayerController().SetLife(5);
+            uIManager.SetState(UIManager.State.UPMAINGAME); GameObject go = GameObject.FindGameObjectWithTag("Obstacle");
+            gameObject = GameObject.FindGameObjectWithTag("Scaffolding");
+            Vector3 tt = new Vector3(0, -4, 0);
+            gameObject.GetComponent<Transform>().position = tt;            
+        }
         uIManager.GetMaingameUI().ResetScore();
-        uIManager.SetState(UIManager.State.DODGEMAINGAME);
     }
 
     void QuitbtnClick()
