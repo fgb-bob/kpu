@@ -18,6 +18,7 @@ public static class Share
             public static readonly string Restartbtn = "Prefabs/Restartbtn";
             public static readonly string Quitbtn = "Prefabs/Quitbtn";
             public static readonly string UpStartbtn = "Prefabs/UpStartbtn";
+            public static readonly string Scaffolding = "Prefabs/Scaffolding";
         }
     }
 

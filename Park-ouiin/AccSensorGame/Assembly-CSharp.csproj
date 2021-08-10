@@ -64,7 +64,6 @@
     <Compile Include="Assets\Scripts\Utility.cs" />
     <Compile Include="Assets\Scripts\Share.cs" />
     <Compile Include="Assets\Scripts\ResultUI.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Resources\ScriptableObject\ObstacleData.cs" />
     <Compile Include="Assets\Scripts\JudgeManager.cs" />
     <Compile Include="Assets\Scripts\ButtonManager.cs" />

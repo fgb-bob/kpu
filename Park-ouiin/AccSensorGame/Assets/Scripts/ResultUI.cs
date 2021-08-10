@@ -11,8 +11,8 @@ public class ResultUI
     {
         restartbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.Restartbtn, UIRoot.resultCanvas);
         quitbtn = Share.Util.InstantiatePrefab(Share.Path.Prefab.Quitbtn, UIRoot.resultCanvas);
-        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "ResultCanvas");
-        Utility.Invisible(gameObject);
+        gameObject = Utility.Object.FindVisibleGameobjectWithName(gameObject, "ResultCanvas");
+        Utility.Object.Invisible(gameObject);
     }
 
     public GameObject GetGameObject()

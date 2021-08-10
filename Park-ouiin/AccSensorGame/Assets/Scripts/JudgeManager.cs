@@ -17,7 +17,7 @@ public class JudgeManager
     {
         for (int i = 0; i < obstacleManager.GetObstacleNum(); ++i)
         {
-            if (Utility.Touching(playerGameObject.GetComponent<Collider2D>(), obstacleManager.GetGameObjectObstacle(i).gameObject.GetComponent<Collider2D>()))
+            if (Utility.Judge.Touching(playerGameObject.GetComponent<Collider2D>(), obstacleManager.GetGameObjectObstacle(i).gameObject.GetComponent<Collider2D>()))
             {
                 obstacleManager.SetPosDir(i);
                 if (obstacleManager.GetType(i)) // 하트 장애물일 경우

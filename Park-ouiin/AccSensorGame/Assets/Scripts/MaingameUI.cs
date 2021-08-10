@@ -21,9 +21,9 @@ public class MaingameUI
             heartPos.x -= 40f * i;
             Heart[i].GetComponent<RectTransform>().anchoredPosition = heartPos;
         }
-        gameObject = Utility.FindVisibleGameobjectWithName(gameObject, "MaingameCanvas");
-        Utility.Invisible(gameObject);
-        Utility.Invisible(MaingameImage);
+        gameObject = Utility.Object.FindVisibleGameobjectWithName(gameObject, "MaingameCanvas");
+        Utility.Object.Invisible(gameObject);
+        Utility.Object.Invisible(MaingameImage);
     }
 
     public void SetScoreText()
@@ -42,9 +42,9 @@ public class MaingameUI
         for (int i = 0; i < maxLife; ++i)
         {
             if (i < life)
-                Utility.Visible(Heart[i]);
+                Utility.Object.Visible(Heart[i]);
             else
-                Utility.Invisible(Heart[i]);
+                Utility.Object.Invisible(Heart[i]);
         }
     }
 
