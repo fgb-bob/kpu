@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public enum EVENT_TYPE {
+enum EVENT__TYPE {
     GAME_INIT, 
     GAME_END, 
     SCORE_INCREASE, 

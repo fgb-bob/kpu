@@ -33,7 +33,7 @@ public class MyPlayerController
         set
         {
             m_score = Mathf.Clamp(value, 0, 100);
-            MyEventManager.Instance.PostNotification(EVENT_TYPE.SCORE_INCREASE, player.obj, m_score);
+            //MyEventManager.Instance.PostNotification(EVENT_TYPE.SCORE_INCREASE, player.obj, m_score);
         }
     }
 
