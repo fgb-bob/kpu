@@ -47,23 +47,21 @@ public static class Utility
 
     public static class Judge
     {
-        public static void NoScreenRangeOut(GameObject gameObject)
+        public static void NoScreenRangeOut(GameObject gameObject, PlayerController.GameType gameType)
         {
             Vector3 worldpos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-            if (worldpos.x < 0f) worldpos.x = 0f;
-            if (worldpos.y < 0f) worldpos.y = 0f;
-            if (worldpos.x > 1f) worldpos.x = 1f;
-            if (worldpos.y > 1f) worldpos.y = 1f;
-
-            gameObject.transform.position = Camera.main.ViewportToWorldPoint(worldpos);
-        }
-
-        public static void NoScreenRangeOut2(GameObject gameObject)
-        {
-            Vector3 worldpos = Camera.main.WorldToViewportPoint(gameObject.transform.position);
-            if (worldpos.x < 0f) worldpos.x = 0f;
-            if (worldpos.x > 1f) worldpos.x = 1f;
-
+            if (gameType == PlayerController.GameType.DODGE)
+            {
+                if (worldpos.x < 0f) worldpos.x = 0f;
+                if (worldpos.y < 0f) worldpos.y = 0f;
+                if (worldpos.x > 1f) worldpos.x = 1f;
+                if (worldpos.y > 1f) worldpos.y = 1f;
+            }
+            else
+            {
+                if (worldpos.x < 0f) worldpos.x = 0f;
+                if (worldpos.x > 1f) worldpos.x = 1f;
+            }
             gameObject.transform.position = Camera.main.ViewportToWorldPoint(worldpos);
         }
 

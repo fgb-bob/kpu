@@ -9,7 +9,7 @@ public class ButtonManager
     {
         upStartbtn = Utility.Object.FindInvisibleGameobjectWithName(upStartbtn, "UIRoot(Clone)", "TitleCanvas");
         upStartbtn = upStartbtn.transform.Find("UpStartbtn(Clone)").gameObject;
-        upStartbtn.GetComponent<Button>().onClick.AddListener(() => UpStartbtnClick(playerData, playerManager, obstacleManager, uIManager));
+        upStartbtn.GetComponent<Button>().onClick.AddListener(() => UpStartbtnClick(playerData, playerManager, obstacleManager, lifeManager, uIManager));
 
         dodgeStartbtn = Utility.Object.FindInvisibleGameobjectWithName(dodgeStartbtn, "UIRoot(Clone)", "TitleCanvas");
         dodgeStartbtn = dodgeStartbtn.transform.Find("DodgeStartbtn(Clone)").gameObject;
@@ -41,7 +41,7 @@ public class ButtonManager
         uIManager.SetState(UIManager.State.DODGEMAINGAME);
     }
 
-    void UpStartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, UIManager uIManager)
+    void UpStartbtnClick(PlayerData playerData, PlayerManager playerManager, ObstacleManager obstacleManager, LifeManager lifeManager, UIManager uIManager)
     {
         gameObject = Utility.Object.FindVisibleGameobjectWithName(gameObject, "TitleCanvas");
         Utility.Object.Invisible(gameObject);
@@ -56,6 +56,7 @@ public class ButtonManager
         playerManager.GetPlayer().GetPlayerController().SetGravity(1);
         obstacleManager.Init();
         obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);
+        uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
         Share.Util.InstantiatePrefab(Share.Path.Prefab.Scaffolding, null);
     }
 
@@ -68,16 +69,14 @@ public class ButtonManager
         obstacleManager.ResetObstacleNum();
         obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);
         lifeManager.ResetLife(playerData.life);
-        if (uIManager.GetState() == UIManager.State.DODGEMAINGAME)
-        {
-            uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+        uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+        gameObject = GameObject.FindGameObjectWithTag("Scaffolding");
+        if (gameObject == null)
             uIManager.SetState(UIManager.State.DODGEMAINGAME);
-        }
-        else 
+        else
         {
             uIManager.SetState(UIManager.State.UPMAINGAME);
             playerManager.GetPlayer().GetPlayerController().SetLifetime(3);
-            gameObject = GameObject.FindGameObjectWithTag("Scaffolding");
             Vector3 tt = new Vector3(0, -4, 0);
             gameObject.GetComponent<Transform>().position = tt;
         }
