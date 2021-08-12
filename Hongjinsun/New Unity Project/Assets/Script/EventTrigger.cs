@@ -16,30 +16,29 @@ public class EventTrigger
         // e.Method == void OnJumpEvent();
         List<Action<IEvent>> list = new List<Action<IEvent>>();
         list.Add(e);
-
-        foreach(var item in list)
+        list[0].Invoke(new JumpEvent());
+        
+        // if ( listeners[] != null)
+        foreach (var item in list)
         {
             Debug.Log(item.Method);
         }
-
-        listeners.Add(EVENT_TYPE.Jump, list);
-        foreach(KeyValuePair<EVENT_TYPE, List<Action<IEvent>>> item in listeners)
+     
+        foreach (KeyValuePair<EVENT_TYPE, List<Action<IEvent>>> item in listeners)
         {
             Debug.Log(item.Key + ", " + item.Value);
         }
+
+        listeners.Add(EVENT_TYPE.Jump, list);
+
+        
         //if (listeners[e] != null)
     }
 
     public static void Do(IEvent e)
     {
-        //listeners[e] => ;
-        List<Action<IEvent>> list;
-        list = new List<Action<IEvent>>();
 
-        foreach(var listener in list)
-        {
-            listener(e);
-        }
+        Debug.Log("Do함수");
     }
 
 }

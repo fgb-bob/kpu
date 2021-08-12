@@ -9,12 +9,12 @@ public class Launcher : MonoBehaviour
     UI ui;
     // Start is called before the first frame update
     void Start()
-    {
-        c = new Character();
-        c.Init();
-
+    {      
         et = new EventTrigger();
         et.Init();
+
+        c = new Character();
+        c.Init();
 
         ui = new UI();
         ui.Init();
@@ -23,6 +23,7 @@ public class Launcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        c.Update();
         Input.GetKeyDown(KeyCode.A);
     }
 }

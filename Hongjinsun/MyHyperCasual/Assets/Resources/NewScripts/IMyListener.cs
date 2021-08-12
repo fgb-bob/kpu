@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-enum EVENT__TYPE {
+enum EVENT_TYPE {
     GAME_INIT, 
     GAME_END, 
     SCORE_INCREASE, 
@@ -12,5 +12,5 @@ enum EVENT__TYPE {
 
 public interface IMyListener
 {
-    void OnEvent(EVENT_TYPE Event_Type, GameObject Sender, object Param = null);
+    //void OnEvent(EVENT_TYPE Event_Type, GameObject Sender, object Param = null);
 }

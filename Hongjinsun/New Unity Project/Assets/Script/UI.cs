@@ -8,6 +8,8 @@ public class UI
     {
         m_button = GameObject.Find("Button").GetComponent<Button>();
         m_button.onClick.AddListener(() => OnClickJumpBTN());
+
+
     }
 
     void OnClickJumpBTN()
