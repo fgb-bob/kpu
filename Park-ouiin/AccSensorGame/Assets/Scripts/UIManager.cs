@@ -30,7 +30,7 @@ public class UIManager
 
     public void SetScore()
     {
-        maingameUI.SetScoreText();
+        maingameUI.SetScoreText(state);
     }
 
     public float GetScore()

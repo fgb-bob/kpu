@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6341094992109271961}
   - component: {fileID: 6341094992109271974}
   - component: {fileID: 6341094992109271975}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Scaffolding
   m_TagString: Scaffolding
   m_Icon: {fileID: 0}

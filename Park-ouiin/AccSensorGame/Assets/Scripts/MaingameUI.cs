@@ -26,9 +26,19 @@ public class MaingameUI
         Utility.Object.Invisible(MaingameImage);
     }
 
-    public void SetScoreText()
+    public void SetScoreText(UIManager.State state)
     {
-        score += Time.deltaTime;
+        switch (state)
+        {
+            case UIManager.State.DODGEMAINGAME:
+                score += Time.deltaTime;
+                break;
+            case UIManager.State.UPMAINGAME:
+                GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
+                if (Mathf.Round(score) < gameObject.GetComponent<Transform>().position.y)
+                    score = gameObject.GetComponent<Transform>().position.y;                
+                break;
+        }        
         textMaker.SetText(ScoreText, "SCORE : " + Mathf.Round(score).ToString());
     }
 

@@ -57,9 +57,19 @@ public class ObstacleManager
         return obstacle[index].GetBool();
     }
 
-    public void SetPosDir(int index)
+    public void SetPosDir(int index, UIManager.State state)
     {
-        obstacle[index].SetPosDir();
+        switch (state)
+        {
+            case UIManager.State.DODGEMAINGAME:
+                obstacle[index].SetPosDir();
+                break;
+            case UIManager.State.UPMAINGAME:
+                GameObject gameObject = GameObject.FindGameObjectWithTag("Player");                
+                obstacle[index].SetPosDir2(gameObject.GetComponent<Transform>().position.y);
+                break;
+        }
+        
     }
 
     public GameObject GetGameObjectObstacle(int index)

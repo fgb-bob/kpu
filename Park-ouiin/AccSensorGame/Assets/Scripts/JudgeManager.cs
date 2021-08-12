@@ -13,22 +13,39 @@ public class JudgeManager
         this.uiManager = uiManager;
     }
 
-    public void judging(GameObject playerGameObject)
+    public void judging(GameObject playerGameObject, UIManager uIManager)
     {
         for (int i = 0; i < obstacleManager.GetObstacleNum(); ++i)
         {
             if (Utility.Judge.Touching(playerGameObject.GetComponent<Collider2D>(), obstacleManager.GetGameObjectObstacle(i).gameObject.GetComponent<Collider2D>()))
             {
-                obstacleManager.SetPosDir(i);
-                if (obstacleManager.GetType(i)) // 하트 장애물일 경우
+                if (uIManager.GetState() == UIManager.State.DODGEMAINGAME)
                 {
-                    lifeManager.IncreaseLife(1);
-                    uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    obstacleManager.SetPosDir(i, UIManager.State.DODGEMAINGAME);
+                    if (obstacleManager.GetType(i)) // 하트 장애물일 경우
+                    {
+                        lifeManager.IncreaseLife(1);
+                        uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    }
+                    else // 그외 장애물일 경우
+                    {
+                        lifeManager.DecreaseLife(1);
+                        uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    }
                 }
-                else // 그외 장애물일 경우
+                else 
                 {
-                    lifeManager.DecreaseLife(1);
-                    uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    obstacleManager.SetPosDir(i, UIManager.State.UPMAINGAME);
+                    if (obstacleManager.GetType(i)) // 하트 장애물일 경우
+                    {
+                        lifeManager.IncreaseLife(1);
+                        uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    }
+                    else // 그외 장애물일 경우
+                    {
+                        lifeManager.DecreaseLife(1);
+                        uiManager.SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
+                    }
                 }
             }
         }
