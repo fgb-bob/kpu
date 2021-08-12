@@ -48,49 +48,49 @@ public class Obstacle
         }
     }
 
-    public void SetPosDir()
+    public void SetPosDir(UIManager.State state, float y)
     {
         pos = goObstacle.transform.position;
-        switch (Random.Range(1, 5))
+        if (state == UIManager.State.DODGEMAINGAME)
         {
-            case 1:
-                pos = RandomVector2(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, obstacleSpawnData.min_pos_y);
-                dir = RandomVector2(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, -obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed);
-                break;
-            case 2:
-                pos = RandomVector2(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.max_pos_y);
-                dir = RandomVector2(-obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
-                break;
-            case 3:
-                pos = RandomVector2(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, -obstacleSpawnData.min_pos_y, -obstacleSpawnData.max_pos_y);
-                dir = RandomVector2(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, obstacleSpawnData.min_speed);
-                break;
-            case 4:
-                pos = RandomVector2(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.min_pos_y);
-                dir = RandomVector2(obstacleSpawnData.max_speed, obstacleSpawnData.min_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
-                break;
+            switch (Random.Range(1, 5))
+            {
+                case 1:
+                    pos = RandomVector(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, obstacleSpawnData.min_pos_y);
+                    dir = RandomVector(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, -obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed);
+                    break;
+                case 2:
+                    pos = RandomVector(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.max_pos_y);
+                    dir = RandomVector(-obstacleSpawnData.min_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
+                    break;
+                case 3:
+                    pos = RandomVector(obstacleSpawnData.max_pos_x, -obstacleSpawnData.max_pos_x, -obstacleSpawnData.min_pos_y, -obstacleSpawnData.max_pos_y);
+                    dir = RandomVector(obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed, obstacleSpawnData.max_speed, obstacleSpawnData.min_speed);
+                    break;
+                case 4:
+                    pos = RandomVector(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, obstacleSpawnData.max_pos_y, -obstacleSpawnData.min_pos_y);
+                    dir = RandomVector(obstacleSpawnData.max_speed, obstacleSpawnData.min_speed, obstacleSpawnData.max_speed, -obstacleSpawnData.max_speed);
+                    break;
+            }
+        }
+        else
+        {
+            switch (Random.Range(1, 3))
+            {
+                case 1:
+                    pos = RandomVector(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, y + 3, y + 5);
+                    dir.x = -pos.x;
+                    break;
+                case 2:
+                    pos = RandomVector(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, y + 3, y + 5);
+                    dir.x = -pos.x;
+                    break;
+            }
         }
         goObstacle.transform.position = pos;
     }
 
-    public void SetPosDir2(float y)
-    {
-        pos = goObstacle.transform.position;
-        switch (Random.Range(1, 3))
-        {
-            case 1:
-                pos = RandomVector2(-obstacleSpawnData.min_pos_x, -obstacleSpawnData.max_pos_x, y + 3, y + 5);
-                dir.x = -pos.x;
-                break;
-            case 2:
-                pos = RandomVector2(obstacleSpawnData.max_pos_x, obstacleSpawnData.min_pos_x, y + 3, y + 5);
-                dir.x = -pos.x;
-                break;
-        }
-        goObstacle.transform.position = pos;
-    }
-
-    Vector2 RandomVector2(float max_pos_x, float min_pos_x, float max_pos_y, float min_pos_y)
+    Vector2 RandomVector(float max_pos_x, float min_pos_x, float max_pos_y, float min_pos_y)
     {
         Vector2 vector;
         vector.x = Random.Range(min_pos_x, max_pos_x);

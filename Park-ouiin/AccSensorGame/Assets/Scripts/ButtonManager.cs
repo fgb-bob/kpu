@@ -70,15 +70,13 @@ public class ButtonManager
         obstacleManager.Generate(obstacleManager.GetObstacleNum(), uIManager);
         lifeManager.ResetLife(playerData.life);
         uIManager.GetMaingameUI().SetHeartActive(lifeManager.GetLife(), lifeManager.GetMaxLife());
-        if (uIManager.GetState() == UIManager.State.DODGEMAINGAME)
-        {            
+        gameObject = GameObject.FindGameObjectWithTag("Scaffolding");
+        if (gameObject == null)
             uIManager.SetState(UIManager.State.DODGEMAINGAME);
-        }
-        else 
+        else
         {
             uIManager.SetState(UIManager.State.UPMAINGAME);
             playerManager.GetPlayer().GetPlayerController().SetLifetime(3);
-            gameObject = GameObject.FindGameObjectWithTag("Scaffolding");
             Vector3 tt = new Vector3(0, -4, 0);
             gameObject.GetComponent<Transform>().position = tt;
         }

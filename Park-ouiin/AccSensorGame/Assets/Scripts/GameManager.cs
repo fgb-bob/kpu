@@ -56,9 +56,12 @@ public class GameManager : MonoBehaviour
                     || lifeManager.GetLife() <= 0)
                     GameEnd();
                 break;
-            default:
-                //throw new System.NotImplementedException();
+            case UIManager.State.TITLE:
                 break;
+            case UIManager.State.ELSE:
+                break;
+            default:
+                throw new System.NotImplementedException();
         }
     }
 
@@ -67,7 +70,7 @@ public class GameManager : MonoBehaviour
         obstacleManager.DestroyObject();
         Utility.Object.Visible(uiManager.GetGameObjectResultUI());
         Utility.Mode.Pause();
-        uiManager.SetState(UIManager.State.RESULT);
+        uiManager.SetState(UIManager.State.ELSE);
     }
 
     void MakeObstacle(int delay)

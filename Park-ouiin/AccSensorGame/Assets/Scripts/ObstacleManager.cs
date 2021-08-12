@@ -23,13 +23,8 @@ public class ObstacleManager
                 obstacle[newObstacleIndexNum].SetType(true);
 
             obstacle[newObstacleIndexNum].Generate();
-            if (uIManager.GetState() == UIManager.State.DODGEMAINGAME)
-                obstacle[newObstacleIndexNum].SetPosDir();
-            else
-            {
-                GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
-                obstacle[newObstacleIndexNum].SetPosDir2(gameObject.GetComponent<Transform>().position.y);
-            }
+            GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
+            obstacle[newObstacleIndexNum].SetPosDir(uIManager.GetState(), gameObject.GetComponent<Transform>().position.y);
             maxObstacleNum = ++newObstacleIndexNum;
         }
     }
@@ -59,17 +54,8 @@ public class ObstacleManager
 
     public void SetPosDir(int index, UIManager.State state)
     {
-        switch (state)
-        {
-            case UIManager.State.DODGEMAINGAME:
-                obstacle[index].SetPosDir();
-                break;
-            case UIManager.State.UPMAINGAME:
-                GameObject gameObject = GameObject.FindGameObjectWithTag("Player");                
-                obstacle[index].SetPosDir2(gameObject.GetComponent<Transform>().position.y);
-                break;
-        }
-        
+        GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
+        obstacle[index].SetPosDir(state, gameObject.GetComponent<Transform>().position.y);
     }
 
     public GameObject GetGameObjectObstacle(int index)
@@ -78,45 +64,35 @@ public class ObstacleManager
     }
 
     // 장애물 특정 범위 벗어났는지 확인 함수
-    bool CalcResetRange(GameObject gameObject)
+    bool CalcResetRange(GameObject gameObject, UIManager uiManager)
     {
-        if (gameObject.transform.position.x < -obstacleData.pos_x ||
-            gameObject.transform.position.x > obstacleData.pos_x ||
-            gameObject.transform.position.y < -obstacleData.pos_y ||
-            gameObject.transform.position.y > obstacleData.pos_y)
-            return true;
-        return false;
-    }
-
-    bool CalcResetRange2(GameObject gameObject)
-    {
-        if (gameObject.transform.position.x < -obstacleData.pos_x ||
-            gameObject.transform.position.x > obstacleData.pos_x)
-            return true;
-        return false;
+        if (uiManager.GetState() == UIManager.State.DODGEMAINGAME)
+        {
+            if (gameObject.transform.position.x < -obstacleData.pos_x ||
+                gameObject.transform.position.x > obstacleData.pos_x ||
+                gameObject.transform.position.y < -obstacleData.pos_y ||
+                gameObject.transform.position.y > obstacleData.pos_y)
+                return true;
+            return false;
+        }
+        else
+        {
+            if (gameObject.transform.position.x < -obstacleData.pos_x ||
+                gameObject.transform.position.x > obstacleData.pos_x)
+                return true;
+            return false;
+        }
     }
 
     public void Moving(UIManager uiManager)
     {
-        if (uiManager.GetState() == UIManager.State.DODGEMAINGAME)
+        for (int i = 0; i < maxObstacleNum; ++i)
         {
-            for (int i = 0; i < maxObstacleNum; ++i)
+            obstacle[i].Move();
+            if (CalcResetRange(obstacle[i].GetgoObstacle(), uiManager))
             {
-                obstacle[i].Move();
-                if (CalcResetRange(obstacle[i].GetgoObstacle()))
-                    obstacle[i].SetPosDir();
-            }
-        }
-        else 
-        {
-            for (int i = 0; i < maxObstacleNum; ++i)
-            {
-                obstacle[i].Move();
-                if (CalcResetRange2(obstacle[i].GetgoObstacle()))
-                {
-                    GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
-                    obstacle[i].SetPosDir2(gameObject.GetComponent<Transform>().position.y);
-                }
+                GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
+                obstacle[i].SetPosDir(uiManager.GetState(), gameObject.GetComponent<Transform>().position.y);
             }
         }
     }
