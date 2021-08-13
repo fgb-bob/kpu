@@ -13,26 +13,24 @@ public class EventTrigger
 
     public static void AddListener(Action<IEvent> e)
     {
-        // e.Method == void OnJumpEvent();
-        List<Action<IEvent>> list = new List<Action<IEvent>>();
-        list.Add(e);
-        list[0].Invoke(new JumpEvent());
-        
-        // if ( listeners[] != null)
-        foreach (var item in list)
+        if (listeners[EVENT_TYPE.Jump] != null)
         {
-            Debug.Log(item.Method);
+            Debug.Log("추가");
+            listeners[EVENT_TYPE.Jump].Add(e);
         }
-     
+        else
+        {
+            List<Action<IEvent>> list = new List<Action<IEvent>>();
+            list.Add(e);
+            Debug.Log("생성");
+            listeners.Add(EVENT_TYPE.Jump, list);
+        }
+
+
         foreach (KeyValuePair<EVENT_TYPE, List<Action<IEvent>>> item in listeners)
         {
             Debug.Log(item.Key + ", " + item.Value);
         }
-
-        listeners.Add(EVENT_TYPE.Jump, list);
-
-        
-        //if (listeners[e] != null)
     }
 
     public static void Do(IEvent e)
