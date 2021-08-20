@@ -19,6 +19,7 @@ public class FGB_UIManager
     public static void TitleInit()
     {
         title.Init();
+        
     }
 
 

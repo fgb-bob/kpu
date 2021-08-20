@@ -61,6 +61,7 @@
     <Compile Include="Assets\Scripts\FGB_PrefabFactory.cs" />
     <Compile Include="Assets\Scripts\FGB_Camera.cs" />
     <Compile Include="Assets\Scripts\FGB_Data.cs" />
+    <Compile Include="Assets\Scripts\FGB_InGameUI.cs" />
     <Compile Include="Assets\Scripts\FGB_Interface.cs" />
     <Compile Include="Assets\Scripts\FGB_Player.cs" />
     <Compile Include="Assets\Scripts\FGB_TitleUI.cs" />
@@ -71,7 +72,7 @@
     <Compile Include="Assets\Scripts\FGB_UIManager.cs" />
     <Compile Include="Assets\Scripts\FGB_Share.cs" />
     <Compile Include="Assets\Scripts\FGB_ObjectManager.cs" />
-    <Compile Include="Assets\Scripts\FGB_InGameUI.cs" />
+    <Compile Include="Assets\Scripts\FGB_EventTrigger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
