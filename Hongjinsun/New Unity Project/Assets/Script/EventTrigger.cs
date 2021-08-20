@@ -35,7 +35,6 @@ public class EventTrigger
 
     public static void Do(IEvent e)
     {
-
         Debug.Log("Do함수");
     }
 
