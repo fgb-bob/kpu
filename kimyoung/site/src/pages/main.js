@@ -1,26 +1,46 @@
 import React, { useState, useEffect, useCallback } from "react"
-import Layout from "./layout"
-import Header from "./header"
+import Layout from "../components/layout"
+import Header from "../components/header"
 import { navigate } from "gatsby"
 import icon_left_arrow from "../images/icon_left_arrow.png"
 import icon_right_arrow from "../images/icon_right_arrow.png"
 import { IconButton } from "@material-ui/core"
-import Banner from "./banner"
+import Banner from "../components/banner"
 import contact_map from "../images/contact_map.jpg"
-import { width } from "@material-ui/system"
+import CategoryImage from "../components/CategoryImage"
+import CoreServices from "../components/CoreServices"
 import service_logo_games from "../images/service-logo@2x-games-1.png"
 import service_logo_apps from "../images/service-logo@2x-apps.png"
 import service_logo_brand from "../images/service-logo@2x-brand.png"
 import service_logo_multiuser from "../images/service-logo@2x-multiuser.png"
 import service_logo_XR from "../images/service-logo@2x-xr-1.png"
 import service_logo_kids from "../images/service-logo-kids-1.png"
+import maccas_casestudy_firstframe from "../images/maccas_casestudy_firstframe.png"
+import client_adobe from "../images/client/client_adobe.png"
+import client_comic_relief from "../images/client/client_comic_relief.png"
+import client_facebook from "../images/client/client_facebook.png"
+import client_grubhub from "../images/client/client_grubhub.png"
+import client_itv_sport from "../images/client/client_itv_sport-1.png"
+import mob_home1_1 from "../images/mob_home1-1.jpg"
 
 
-const Main  = () => {
+const Main  = (props) => {
+
     return (
         <Layout>
-            <Header image="이미지">
-            </Header>
+            <section style={{
+            backgroundColor: "#161C24",
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            flexDirection : 'column',
+            alignItems: "center",
+            justifyContent: "center",
+        }}>
+            <CategoryImage imageUri={maccas_casestudy_firstframe} title={"abc"} />
+            
+        </section>
+            
         <section style={{
             backgroundColor: "#161C24",
             display: "flex",
@@ -49,12 +69,18 @@ const Main  = () => {
                 <p style={{color: "#fff", fontSize: "18px", fontFamily: "Noto Sans KR", fontWeight: 400, lineHeight: "40px", marginLeft : '35%'}}>
                     FIND OUT MORE
                 </p> 
-                    <IconButton style={{display : "flex", padding : 0}}>
+                    <IconButton
+                        style={{
+                            display : "flex",
+                            padding : 0}}
+                            onClick={()=>{
+                                navigate("/about")
+                            }}>
                         <img style={{width : "30px", height : "30px", marginLeft : '100%'}} src={icon_right_arrow} alt={"오른쪽화살표"}></img>
                     </IconButton>
             </div>
             <div style={{height : '150px', width : '20%'}}></div>    
-            <p style={{color : "#fff", fontSize : "15px"}}>_OUR CLIENTS</p>
+                <p style={{color : "#fff", fontSize : "15px"}}>_OUR CLIENTS</p>
             <div style={{height : '20%', width : '100%', display : 'flex', alignItems: "center", justifyContent : 'center'}}>
                 <Banner></Banner>
             </div>
@@ -72,39 +98,8 @@ const Main  = () => {
             flexDirection : 'column'
         }}>
             <div style={{height : '100px'}}></div>
-            <div>
-                <p style={{color: "#fff", fontSize: "100px", fontFamily: "Noto Sans KR", fontWeight: 700, lineHeight: "10px"}}>
-                   Core Services
-                </p>
-            </div>
-
-            <div style={{display : 'flex', height : '300px'}}>
-                
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_games}></img>
-                </IconButton>
-
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_apps}></img>
-                </IconButton>
-
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_brand}></img>
-                </IconButton>
-            </div>
-
-            <div style={{display : 'flex', height : '300px'}}>
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_multiuser}></img>
-                </IconButton>
-
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_XR}></img>
-                </IconButton>
-
-                <IconButton>
-                    <img style={{width : '50%', height : '50%'}} src={service_logo_kids}></img>
-                </IconButton>
+            <div style={{width : '80%'}}>
+                <CoreServices></CoreServices>
             </div>
             <div style={{height : '200px'}}></div>
         </section>
@@ -135,22 +130,23 @@ const Main  = () => {
                         backgroundColor: '#252C39'
                     }}
                 >
-                <CategoryImage imageUri={maccas_casestudy_firstframe} title={"abc"} />
-
-                <p
-                    style={{
-                        color: "#fff",
-                        fontSize: "20px",
-                        fontFamily: "Noto Sans KR",
-                        fontWeight: 800,
-                        lineHeight: "18.7px",
-                        letterSpacing: "-0.72px",
-                        textAlign: "center",
-                        whiteSpace: "nowrap",
-                    }}
-                >
-                    {"가나다"}
-                </p>
+                <CategoryImage imageUri={maccas_casestudy_firstframe} title={"abc"}>
+                    <p
+                        style={{
+                            color: "#fff",
+                            fontSize: "80px",
+                            fontFamily: "Noto Sans KR",
+                            fontWeight: 800,
+                            lineHeight: "18.7px",
+                            letterSpacing: "-0.72px",
+                            textAlign: "center",
+                            whiteSpace: "nowrap",
+                        }}
+                    >
+                        가나다
+                    </p>
+                </CategoryImage>
+                
             </button>
         </div>
         </section>
