@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager
 {
-    public enum State { TITLE, DODGEMAINGAME, UPMAINGAME, RESULT };
+    public enum State { TITLE, DODGEMAINGAME, UPMAINGAME, ELSE };
 
     State state = State.TITLE;
 
@@ -30,7 +30,7 @@ public class UIManager
 
     public void SetScore()
     {
-        maingameUI.SetScoreText();
+        maingameUI.SetScoreText(state);
     }
 
     public float GetScore()

@@ -4,7 +4,6 @@ const Layout = props => {
   return (
     <div
       style={{
-        backgroundColor: "#fff",
         overflowY: "hidden",
         position: "relative",
         display: "flex",

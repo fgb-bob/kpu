@@ -117,10 +117,42 @@ const Main  = () => {
             justifyContent: "center",
             alignItems: "center",
         }}>
-            <div style={{height : "200px"}}></div>
-            <div>
+            <div style={{
+                display: "flex",
+                width: "80%",
+                height: '100%',
+                justifyContent: "center",
+                alignItems: "center"}}>
+                 <button
+                    key={"예시이미지"}
+                    style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        height: "fit-content",
+                        width: '100%',
+                        backgroundColor: '#252C39'
+                    }}
+                >
+                <CategoryImage imageUri={maccas_casestudy_firstframe} title={"abc"} />
 
-            </div>
+                <p
+                    style={{
+                        color: "#fff",
+                        fontSize: "20px",
+                        fontFamily: "Noto Sans KR",
+                        fontWeight: 800,
+                        lineHeight: "18.7px",
+                        letterSpacing: "-0.72px",
+                        textAlign: "center",
+                        whiteSpace: "nowrap",
+                    }}
+                >
+                    {"가나다"}
+                </p>
+            </button>
+        </div>
         </section>
 
         <section style={{

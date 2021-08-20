@@ -3,7 +3,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     GameObject uiRoot;
-
+    GameObject go;
     UIManager uiManager;
     PlayerManager playerManager;
     LifeManager lifeManager;
@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        Utility.NoSleepMode();
+        Utility.Mode.NoSleepMode();
 
         DontDestroyOnLoad(uiRoot = Share.Util.InstantiatePrefab(Share.Path.Prefab.Root, null));
 
@@ -38,36 +38,51 @@ public class GameManager : MonoBehaviour
         switch (uiManager.GetState())
         {
             case UIManager.State.DODGEMAINGAME:
-                playerManager.PlayerMoveUpdate();
-                uiManager.SetScore();
+                GameUpdate();
                 // playerData.monsterDelay마다 장애물 1개 추가 생성
-                if (((int)uiManager.GetScore() / playerData.monsterDelay) == obstacleManager.GetObstacleNum())
-                    obstacleManager.Generate(obstacleManager.GetObstacleNum(), uiManager);
-                obstacleManager.Moving(uiManager);
+                MakeObstacle(playerData.monsterDelay);
                 // 장애물과 플레이어 충돌 판단
-                judgeManager.judging(playerManager.GetGameObjectPlayer());
+                judgeManager.judging(playerManager.GetGameObjectPlayer(), uiManager);
                 if (lifeManager.GetLife() <= 0)
-                {
-                    obstacleManager.DestroyObject();
-                    Utility.Visible(uiManager.GetGameObjectResultUI());
-                    Utility.Pause();
-                    uiManager.SetState(UIManager.State.RESULT);
-                }
+                    GameEnd();
                 break;
             case UIManager.State.UPMAINGAME:
-                playerManager.PlayerMoveUpdate();
-                uiManager.SetScore();
-                obstacleManager.Moving(uiManager);
-                if (playerManager.GetPlayer().GetPlayerController().GetLife() <= 0)
-                {
-                    Utility.Visible(uiManager.GetGameObjectResultUI());
-                    Utility.Pause();
-                    uiManager.SetState(UIManager.State.RESULT);
-                }
+                GameUpdate();
+                MakeObstacle(25);
+                judgeManager.judging(playerManager.GetGameObjectPlayer(), uiManager);
+                go = GameObject.FindGameObjectWithTag("Scaffolding");
+                if ((playerManager.GetGameObjectPlayer().GetComponent<Transform>().position.y < go.GetComponent<Transform>().position.y
+                    && playerManager.GetPlayer().GetPlayerController().GetLifetime() < 0) 
+                    || lifeManager.GetLife() <= 0)
+                    GameEnd();
+                break;
+            case UIManager.State.TITLE:
+                break;
+            case UIManager.State.ELSE:
                 break;
             default:
-                //throw new System.NotImplementedException();
-                break;
+                throw new System.NotImplementedException();
         }
+    }
+
+    void GameEnd()
+    {
+        obstacleManager.DestroyObject();
+        Utility.Object.Visible(uiManager.GetGameObjectResultUI());
+        Utility.Mode.Pause();
+        uiManager.SetState(UIManager.State.ELSE);
+    }
+
+    void MakeObstacle(int delay)
+    {
+        if (((int)uiManager.GetScore() / delay) == obstacleManager.GetObstacleNum())
+            obstacleManager.Generate(obstacleManager.GetObstacleNum(), uiManager);
+        obstacleManager.Moving(uiManager);
+    }
+
+    void GameUpdate()
+    {
+        playerManager.PlayerMoveUpdate();
+        uiManager.SetScore();
     }
 }

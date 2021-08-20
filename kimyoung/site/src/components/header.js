@@ -1,72 +1,33 @@
 import React from "react"
+import mob_home1_1 from "../images/mob_home1-1.jpg"
+import mob_home2_1 from "../images/mob_home2-1.jpg"
 
 
 const Header = (props) => {
-    const { image } = props
-
-
-  return (
-    <section
+  const {imageUri} = props
+  
+  return imageUri !== null && imageUri !== undefined ? (
+    <img
       style={{
-        backgroundColor: "#fff999",
+        width: '100%',
+        height: '100%',
+        objectFit: "cover",
+      }}
+      src={mob_home2_1}
+      alt={imageUri}
+    />
+  ) : (
+    <div
+      style={{
+        backgroundColor: "##252C39",
         display: "flex",
-        width: "100%",
-        height: "900px",
         justifyContent: "center",
         alignItems: "center",
+        width: '100%',
+        height: '100%',
       }}
     >
-      <div style={{ display: "flex", width: "60px", height: "100%" }}>left</div>
-
-      <div
-        style={{
-          display: "flex",
-          flex: 1,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            height: "100%",
-            justifyContent: "flex-end",
-            alignItems: "center",
-          }}
-        >
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            flex: 1,
-            height: "100%",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          <p
-            style={{
-              overflowX: "hidden",
-              flex: 1,
-              width: "0px",
-              color: "#99999",
-              fontSize: "20px",
-              fontFamily: "NanumSquareExtraBold",
-              lineHeight: "26.7px",
-              letterSpacing: "-1.6px",
-              whiteSpace: "nowrap",
-              textOverflow: "ellipsis",
-            }}
-          >
-              {image}
-          </p>
-        </div>
-      </div>
-
-      <div style={{ display: "flex", width: "60px", height: "100%" }}>right</div>
-    </section>
+    </div>
   )
 }
 

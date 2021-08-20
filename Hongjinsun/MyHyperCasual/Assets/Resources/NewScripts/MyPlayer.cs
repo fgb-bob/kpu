@@ -8,6 +8,7 @@ public class MyPlayer
     public Rigidbody2D rigid;
     public CapsuleCollider2D capsule;
     public BoxCollider2D box;
+    public PolygonCollider2D polygon;
     public Vector2 velocity;
     int m_moveState;
 
@@ -32,10 +33,12 @@ public class MyPlayer
 
         obj.AddComponent<BoxCollider2D>();
         box = obj.GetComponent<BoxCollider2D>();
-        box.offset = new Vector2(0.7f, -0.5f);
-        box.size = new Vector2(1, 1.4f);
+        box.offset = new Vector2(0.9f, -0.5f);
+        box.size = new Vector2(0.5f, 1.5f);
         box.isTrigger = true;
         box.enabled = false;
+
+        polygon = obj.GetComponent<PolygonCollider2D>();
     }
 
     public void ResetData()
