@@ -15,7 +15,11 @@ public class Player
     public void ControllerMoveUpdate()
     {
         playerController.Horizontal();
-        //playerController.Vertical();
-        playerController.Move();      
+        playerController.Move();
+    }
+
+    public PlayerController GetPC()
+    {
+        return playerController;
     }
 }

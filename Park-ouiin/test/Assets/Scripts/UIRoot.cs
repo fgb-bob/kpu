@@ -7,9 +7,6 @@ public class UIRoot : MonoBehaviour
     private void Awake()
     {
         rootUI = transform.Find("UIRoot");
-        noneUIGameObject = transform.Find("NoneUIGameObject");
-        //titleCanvas = transform.Find("TitleCanvas");
-        //maingameCanvas = transform.Find("MaingameCanvas");
-        //resultCanvas = transform.Find("ResultCanvas");        
+        noneUIGameObject = transform.Find("NoneUIGameObject");        
     }
 }

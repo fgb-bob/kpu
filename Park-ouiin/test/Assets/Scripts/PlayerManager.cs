@@ -14,4 +14,9 @@ public class PlayerManager
     {
         player.ControllerMoveUpdate();
     }
+
+    public Rigidbody2D GetPlayerRig()
+    {
+        return player.GetPC().GetRig();
+    }
 }

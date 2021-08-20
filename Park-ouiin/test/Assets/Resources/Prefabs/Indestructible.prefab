@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2058925253727981043}
   - component: {fileID: 8990137873179919159}
   - component: {fileID: 439181347299109438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Indestructible
-  m_TagString: Untagged
+  m_TagString: Indestructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -107,5 +107,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1, y: 1}
+  m_Size: {x: 1.1, y: 1.1}
   m_EdgeRadius: 0

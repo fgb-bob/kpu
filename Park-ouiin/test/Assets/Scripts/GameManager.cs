@@ -25,11 +25,11 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        for (int row = 0; row < mapData.row.Length; ++row)
+        for (int row = 0; row < mapData.map[0].row.Length; ++row)
         {
-            for (int col = 0; col < mapData.row[row].col.Length; ++col)
+            for (int col = 0; col < mapData.map[0].row[row].col.Length; ++col)
             {
-                switch (mapData.row[row].col[col])
+                switch (mapData.map[0].row[row].col[col])
                 {
                     case 0: // ºó °ø°£
                         break;
@@ -48,14 +48,14 @@ public class GameManager : MonoBehaviour
                         mapGameObject.GetComponent<Transform>().position = pos;
                         break;
                     default:
-                        throw new System.NotImplementedException();                        
-                }                
+                        throw new System.NotImplementedException();
+                }
             }
         }
     }
 
     void FixedUpdate()
     {
-        playerManager.PlayerMoveUpdate();        
+        playerManager.PlayerMoveUpdate();
     }
 }

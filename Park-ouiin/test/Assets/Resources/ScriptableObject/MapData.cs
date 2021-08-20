@@ -10,5 +10,10 @@ public class MapData : ScriptableObject
     {
         public int[] col;
     }
-    public Row[] row;
+    [System.Serializable]
+    public struct Array
+    {
+        public Row[] row;
+    }
+    public Array[] map;
 }
